@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="TrocEnchere:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/TrocEnchere_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="TrocEnchere/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="TrocEnchere" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
