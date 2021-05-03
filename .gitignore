@@ -7,6 +7,7 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 
+.idea
 out
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse
