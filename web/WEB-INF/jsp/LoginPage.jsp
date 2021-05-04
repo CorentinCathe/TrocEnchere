@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <link rel="icon" type="image/png" href="./assets/shopping-cart.png" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/LoginPage.css">
 
     <title>Login</title>
@@ -20,7 +20,7 @@
         <div class="form">
             <form class="login-form" action = "${pageContext.request.contextPath}/login" method="post">
                 <p style="color: red">${message}</p>
-                <input type="text" placeholder="username" id="username" name="username" required autofocus/>
+                <input type="text" placeholder="username or email" id="username" name="username" required autofocus/>
                 <input type="password" placeholder="password" id="password" name="password" required/>
                 <button type="submit" title="Login"> Login</button>
                 <p class="message">Not registered? <a href="#">Create an account</a></p>
