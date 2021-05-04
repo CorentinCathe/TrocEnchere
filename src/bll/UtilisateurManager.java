@@ -13,6 +13,9 @@ public class UtilisateurManager {
 
     public Utilisateur Connection(String pseudo,String mdp) {
         UtilisateurDAO aDAO = DAOFactory.getUtilisateurDAO();
-        return aDAO.selectUserByUsername(pseudo);
+        if (aDAO.compareUserPass(pseudo, mdp))
+            return aDAO.selectUserByUsername(pseudo);
+        else
+            return null;
     }
 }

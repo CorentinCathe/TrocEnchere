@@ -32,4 +32,16 @@ public class UtilisateurDAO {
         }
         return user;
     }
+
+    public boolean compareUserPass(String user, String pass){
+        try (Connection cnx = ConnectionProvider.getConnection();
+        ) {
+            Statement psmt = cnx.createStatement();
+            ResultSet rs = psmt.executeQuery("SELECT mdp from UTILISATEURS where pseudo = " + user);
+            return pass.equals(rs.getString("mdp"));
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
 }
