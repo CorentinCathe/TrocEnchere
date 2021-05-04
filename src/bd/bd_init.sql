@@ -3,8 +3,8 @@
 --
 
 DROP TABLE RETRAITS;
-DROP TABLE ARTICLES_VENDUS;
 DROP TABLE ENCHERES;
+DROP TABLE ARTICLES_VENDUS;
 DROP TABLE CATEGORIES;
 DROP TABLE UTILISATEURS;
 
@@ -20,7 +20,7 @@ ALTER TABLE CATEGORIES ADD constraint categorie_pk PRIMARY KEY (id)
 
 CREATE TABLE UTILISATEURS (
                               id   INTEGER IDENTITY(1,1) NOT NULL,
-                              pseudo           VARCHAR(30) NOT NULL,
+                              pseudo           VARCHAR(30) NOT NULL UNIQUE,
                               nom              VARCHAR(30) NOT NULL,
                               prenom           VARCHAR(30) NOT NULL,
                               email            VARCHAR(50) NOT NULL,
