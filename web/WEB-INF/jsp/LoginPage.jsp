@@ -18,10 +18,11 @@
             <h1>TROC ENCHERE</h1>
         </div>
         <div class="form">
-            <form class="login-form">
-                <input type="text" placeholder="username"/>
-                <input type="password" placeholder="password"/>
-                <button>login</button>
+            <form class="login-form" action = "${pageContext.request.contextPath}/login" method="post">
+                <p style="color: red">${message}</p>
+                <input type="text" placeholder="username" id="username" name="username" required autofocus/>
+                <input type="password" placeholder="password" id="password" name="password" required/>
+                <button type="submit" title="Login"> Login</button>
                 <p class="message">Not registered? <a href="#">Create an account</a></p>
             </form>
         </div>
