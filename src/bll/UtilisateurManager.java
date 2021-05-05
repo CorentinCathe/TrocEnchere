@@ -11,7 +11,7 @@ public class UtilisateurManager {
         return user;
     }
 
-        public Utilisateur modifierUnUtilisateur(Utilisateur user) {
+        public boolean modifierUnUtilisateur(Utilisateur user) {
             UtilisateurDAO aDAO = DAOFactory.getUtilisateurDAO();
 //            if (aDAO.compareUserPass(user.getPseudo(), user.getMdp()))
                 return aDAO.majProfil(user);

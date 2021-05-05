@@ -30,20 +30,38 @@ public class MajProfilServlet extends HttpServlet {
         String ville = req.getParameter("city");
         String mdp = req.getParameter("password");
         System.out.println("new pass = "+req.getParameter("newpassword"));
-//        if (!req.getParameter("newpassword").equals("")) {
-//            mdp = req.getParameter("newpassword");
-//        }
-        //int credit = Integer.valueOf(req.getParameter("credit"));
-        //boolean admin = Boolean.valueOf(req.getParameter("admin"));
-        Utilisateur user = new Utilisateur(0, username, nom, prenom, email, tel, rue, cp, ville, mdp, 0, true);
+        String newmdp = req.getParameter("newpassword");
+        String newMdpVerification = req.getParameter("confirmPassword");
+        System.out.println("mdp : " + mdp);
+        System.out.println("newmdp : " + newmdp);
+        System.out.println("newMdpVerif : " + newMdpVerification);
         UtilisateurManager um = new UtilisateurManager();
-        user = um.modifierUnUtilisateur(user);
-        req.getSession().setAttribute("user",user);
-//        if (user != null)
-//
-//        else
-        System.out.println(user);
-        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/AfficherProfil.jsp");
-        rd.forward(req, resp);
+        //newmdp = abc verifPW = ""
+        System.out.println((!newmdp.equals("") && newMdpVerification.equals("")) || (newmdp.equals("") && !newMdpVerification.equals("")) || !newmdp.equals(newMdpVerification));
+        if( (!newmdp.equals("") && newMdpVerification.equals("")) || (newmdp.equals("") && !newMdpVerification.equals("")) || !newmdp.equals(newMdpVerification)){
+            req.setAttribute("newPwVerification", "New password not allowed !");
+            this.doGet(req, resp);
+        }else {
+            if(um.connection(username, mdp) != null){
+                System.out.println("Test ");
+                if (!newmdp.equals("") && !newmdp.equals(mdp)){
+                    mdp = newmdp;
+                }
+                Utilisateur user = new Utilisateur(0, username, nom, prenom, email, tel, rue, cp, ville, mdp, 0, true);
+                boolean res = um.modifierUnUtilisateur(user);
+                System.out.println(res);
+                req.getSession().setAttribute("user",user);
+                System.out.println(user);
+                RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/AfficherProfil.jsp");
+                rd.forward(req, resp);
+            }
+
+            else {
+                req.setAttribute("pwVerification", "Wrong password !");
+                this.doGet(req, resp);
+            }
+        }
+
+
     }
 }

@@ -31,19 +31,13 @@ public class InscriptionServlet extends HttpServlet {
         String cp = req.getParameter("cp");
         String ville = req.getParameter("city");
         String mdp = req.getParameter("password");
-        //int credit = Integer.valueOf(req.getParameter("credit"));
-        //boolean admin = Boolean.valueOf(req.getParameter("admin"));
-        Utilisateur user = new Utilisateur(0, username, nom, prenom, email, tel, rue, cp, ville, mdp, 0, true);
+
         UtilisateurManager um = new UtilisateurManager();
+
+        Utilisateur user = new Utilisateur(0, username, nom, prenom, email, tel, rue, cp, ville, mdp, 0, true);
         user = um.ajouterUnUtilisateur(user);
-//        if (user != null)
-//
-//        else
         System.out.println(user);
-        req.getSession().setAttribute("user",user);
-        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/Accueil.jsp");
-
-
+        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/LoginPage.jsp");
         rd.forward(req, resp);
     }
 }

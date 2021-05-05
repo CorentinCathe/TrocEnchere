@@ -91,7 +91,8 @@ public class UtilisateurDAO {
     }
     //public static final String UPDATEUSER = "UPDATE UTILISATEURS SET pseudo = ?,nom = ?,prenom = ?,email = ?,tel = ?,rue = ?,cp = ?,ville = ?,mdp = ? WHERE pseudo = ? or email = ?";
 
-    public Utilisateur majProfil(Utilisateur user){
+    public boolean majProfil(Utilisateur user){
+        boolean res = false;
         try (Connection cnx = ConnectionProvider.getConnection();
         ) {
             PreparedStatement psmt = cnx.prepareStatement(UPDATEUSER);
@@ -106,10 +107,10 @@ public class UtilisateurDAO {
             psmt.setString(7,user.getMdp());
             psmt.setString(8,user.getPseudo());
             psmt.setString(9,user.getEmail());
-            psmt.executeQuery();
+            res = psmt.execute();
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return user;
+        return !res;
     }
 }

@@ -19,6 +19,8 @@
         <h1>Mon Profil</h1>
     </div>
     <div class="form">
+        <%= request.getParameter("pwVerification")%>
+        <%= request.getParameter("newPwVerification")%>
         <form id="inscription-form" action = "${pageContext.request.contextPath}/majprofil" method="post">
             <input type="text" placeholder="Pseudo" id="username" name="username" required autofocus/>
             <input type="text" placeholder="Prénom" id="firstName" name="firstName" required />
