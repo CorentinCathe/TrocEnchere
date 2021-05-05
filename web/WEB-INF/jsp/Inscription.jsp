@@ -22,11 +22,11 @@
             <form id="inscription-form" action = "${pageContext.request.contextPath}/inscription" method="post">
                 <input type="text" placeholder="Pseudo" id="username" name="username" required autofocus/>
                 <input type="text" placeholder="Prénom" id="firstName" name="firstName" required />
-                <input type="text" placeholder="Nom" id="lastName" name="lasteName" required />
+                <input type="text" placeholder="Nom" id="lastName" name="lastName" required />
                 <input type="tel" placeholder="Téléphone" id="phoneNumber" name="phoneNumber" required />
-                <input type="mail" placeholder="email" id="mail" name="mail" required />
+                <input type="email" placeholder="email" id="mail" name="mail" required />
                 <input type="text" placeholder="Adresse" id="adresse" name="adresse" required />
-                <input pattern="[0-9]{5}" type="text" placeholder="Code Postal" required />
+                <input pattern="[0-9]{5}" type="text" placeholder="Code Postal" name="cp" required />
                 <input type="text" placeholder="Ville" id="city" name="city" required />
                 <input type="password" placeholder="Mot de passe" id="password" name="password" required />
                 <input type="password" placeholder="Confirmer mot de passe" id="confirmPassword" name="confirmPassword" required />
