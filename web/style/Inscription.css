@@ -1,14 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 body{
-    margin: 0;
-    padding: 0;
-    height: 100vh;
+    margin: 3%;
     display: flex;
     justify-content: space-around;
-    background: linear-gradient(to left, #d0afd1, #e8d6e8);
+    background: linear-gradient(to left, #d9b1da, #e8d6e8);
     font-family: "Roboto", sans-serif;
-    overflow: hidden;
+    align-items: center;
+}
+.content{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -20,12 +23,19 @@ body{
 .form {
     z-index: 1;
     background: #FFFFFF;
-    max-width: 360px;
+    width: 50%;
     margin: 0px auto 3vh;
     padding: 45px;
-    text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
+#inscription-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+}
+
 .form input {
     font-family: "Roboto", sans-serif;
     outline: 0;
@@ -38,20 +48,29 @@ body{
     font-size: 14px;
 }
 
+.form-item{
+    display: flex;
+    align-items: baseline;
+ }
+
+label{
+    width: 25%;
+    padding-top: 3.5%;
+}
 
 .buttonGroupe{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    width: 61%;
+    margin: 1%;
+    justify-content: space-around;
 }
 
 button {
-    margin: 2%;
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
     background: #863a8d;
-    width: 100%;
+    width: 42%;
     border: 0;
     padding: 15px;
     color: #FFFFFF;
