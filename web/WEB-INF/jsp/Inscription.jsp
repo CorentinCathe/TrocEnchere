@@ -20,6 +20,7 @@
         </div>
         <div class="form">
             <form id="inscription-form" action = "${pageContext.request.contextPath}/inscription" method="post">
+
                 <div class="form-item">
                     <label for="username">Pseudo :</label>
                     <input type="text" placeholder="Pseudo" id="username" name="username" required autofocus/>
@@ -60,6 +61,7 @@
                     <label for="confirmPassword">Confirmer mot de passe :</label>
                     <input type="password" placeholder="Confirmer mot de passe" id="confirmPassword" name="confirmPassword" required />
                 </div>
+
             </form>
         </div>
         <div class="buttonGroupe">
