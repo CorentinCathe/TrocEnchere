@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet{
         String password = req.getParameter("password");
 
         UtilisateurManager um = new UtilisateurManager();
-        Utilisateur user = um.Connection(username,password);
+        Utilisateur user = um.connection(username,password);
         if(user == null) {
             req.setAttribute("message","Attention , username ou mot de passe incorrect");
             RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/LoginPage.jsp");
@@ -35,7 +35,8 @@ public class LoginServlet extends HttpServlet{
 
             HttpSession session = req.getSession();
             session.setAttribute("user",user);
-            req.setAttribute("user", user);
+            session.setAttribute("connected",true);
+//            req.setAttribute("user", user);
             resp.sendRedirect(req.getContextPath()+"/accueil");
         }
 

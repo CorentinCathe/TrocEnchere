@@ -12,7 +12,9 @@ public class UtilisateurDAO {
 
     public static final String SELECTUSER = "SELECT * FROM UTILISATEURS WHERE pseudo = ? or email = ?";
     public static final String SELECTPASSWORD = "SELECT mdp from UTILISATEURS where pseudo = ? or email = ?";
-    public static final String INSERTUSER = "INSERT INTO UTILISATEURS VALUES (?,?,?,?,?,?,?,?,?,?,'true')";
+    public static final String INSERTUSER = "INSERT INTO UTILISATEURS VALUES (?,?,?,?,?,?,?,?,?,0,'true')";
+    public static final String UPDATEUSER = "UPDATE UTILISATEURS SET nom = ?,prenom = ?,tel = ?,rue = ?,cp = ?,ville = ?,mdp = ? WHERE pseudo = ? or email = ?";
+
 
     public Utilisateur selectUserByUsername(String username) {
         Utilisateur user=null;
@@ -76,13 +78,35 @@ public class UtilisateurDAO {
             psmt.setString(7,user.getCP());
             psmt.setString(8,user.getVille());
             psmt.setString(9,user.getMdp());
-            psmt.setInt(10,user.getCredit());
-            ResultSet rs = psmt.executeQuery();
+            psmt.executeQuery();
 //            if (rs.next()){
 //                user.setId(psmt.getGeneratedKeys().getInt(1));
 //            }else{
 //                return null;
 //            }
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return user;
+    }
+    //public static final String UPDATEUSER = "UPDATE UTILISATEURS SET pseudo = ?,nom = ?,prenom = ?,email = ?,tel = ?,rue = ?,cp = ?,ville = ?,mdp = ? WHERE pseudo = ? or email = ?";
+
+    public Utilisateur majProfil(Utilisateur user){
+        try (Connection cnx = ConnectionProvider.getConnection();
+        ) {
+            PreparedStatement psmt = cnx.prepareStatement(UPDATEUSER);
+            //psmt.setString(1,user.getPseudo());
+            psmt.setString(1,user.getNom());
+            psmt.setString(2,user.getPrenom());
+            //psmt.setString(4,user.getEmail());
+            psmt.setString(3,user.getTel());
+            psmt.setString(4,user.getRue());
+            psmt.setString(5,user.getCP());
+            psmt.setString(6,user.getVille());
+            psmt.setString(7,user.getMdp());
+            psmt.setString(8,user.getPseudo());
+            psmt.setString(9,user.getEmail());
+            psmt.executeQuery();
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
