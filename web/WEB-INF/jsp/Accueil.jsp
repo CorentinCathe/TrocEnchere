@@ -14,14 +14,14 @@
     <title>Accueil</title>
 </head>
 <body>
-<% Boolean resultIsConnected = (Boolean) request.getAttribute("isConnected");%>
-<% Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("user"); %>
 <header>
 
     <div class="logo">Troc Enchere</div>
     <section class="menu-container">
-    <c:choose>
-        <c:when test="<%= resultIsConnected.equals(true) %>">
+     <% Boolean resultIsConnected = (Boolean) request.getSession().getAttribute("connected");%>
+        <c:choose>
+            <c:when test= "<%= resultIsConnected!=null && resultIsConnected%>" >
+                <% Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("user"); %>
             <ul class="menu">
                 <li class="menu-btn">
                     <form action="${pageContext.request.contextPath}/enchere" method="post">
@@ -38,7 +38,7 @@
                 <li class="menu-btn">
                     <form action="${pageContext.request.contextPath}/vendre" method="post">
                         <% request.getSession().setAttribute("user", null);%>
-                        <button type="submit" value="Vendre article" name="profil">Vendre article</button>
+                        <button type="submit" value="Vendre article" name="vendre">Vendre article</button>
                     </form>
                 </li>
                 <li class="menu-btn">

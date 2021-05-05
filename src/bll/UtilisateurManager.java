@@ -11,12 +11,21 @@ public class UtilisateurManager {
         return user;
     }
 
+        public boolean modifierUnUtilisateur(Utilisateur user) {
+            UtilisateurDAO aDAO = DAOFactory.getUtilisateurDAO();
+//            if (aDAO.compareUserPass(user.getPseudo(), user.getMdp()))
+                return aDAO.majProfil(user);
+//            else
+//                return null;
+        }
 
-    public Utilisateur Connection(String pseudo,String mdp) {
+    public Utilisateur connection(String pseudo,String mdp) {
         UtilisateurDAO aDAO = DAOFactory.getUtilisateurDAO();
         if (aDAO.compareUserPass(pseudo, mdp))
             return aDAO.selectUserByUsername(pseudo);
         else
             return null;
     }
+
+
 }
