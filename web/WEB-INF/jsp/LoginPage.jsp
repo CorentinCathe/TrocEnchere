@@ -23,7 +23,7 @@
                 <input type="text" placeholder="username or email" id="username" name="username" required autofocus/>
                 <input type="password" placeholder="password" id="password" name="password" required/>
                 <button type="submit" title="Login"> Login</button>
-                <p class="message">Not registered? <a href="${pageContext.request.contextPath}/inscription">Create an account</a></p>
+                <p class="message">Pas encore de compte ? <a href="${pageContext.request.contextPath}/inscription">Cliquez ici !</a></p>
             </form>
         </div>
     </section>
