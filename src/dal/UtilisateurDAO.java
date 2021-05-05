@@ -12,7 +12,7 @@ public class UtilisateurDAO {
 
     public static final String SELECTUSER = "SELECT * FROM UTILISATEURS WHERE pseudo = ? or email = ?";
     public static final String SELECTPASSWORD = "SELECT mdp from UTILISATEURS where pseudo = ? or email = ?";
-
+    public static final String INSERTUSER = "INSERT INTO UTILISATEURS VALUES (?,?,?,?,?,?,?,?,?,?,'true')";
 
     public Utilisateur selectUserByUsername(String username) {
         Utilisateur user=null;
@@ -61,5 +61,31 @@ public class UtilisateurDAO {
             System.out.println(e.getMessage());
         }
         return false;
+    }
+
+    public Utilisateur createAccount(Utilisateur user){
+        try (Connection cnx = ConnectionProvider.getConnection();
+        ) {
+            PreparedStatement psmt = cnx.prepareStatement(INSERTUSER);
+            psmt.setString(1,user.getPseudo());
+            psmt.setString(2,user.getNom());
+            psmt.setString(3,user.getPrenom());
+            psmt.setString(4,user.getEmail());
+            psmt.setString(5,user.getTel());
+            psmt.setString(6,user.getRue());
+            psmt.setString(7,user.getCP());
+            psmt.setString(8,user.getVille());
+            psmt.setString(9,user.getMdp());
+            psmt.setInt(10,user.getCredit());
+            ResultSet rs = psmt.executeQuery();
+//            if (rs.next()){
+//                user.setId(psmt.getGeneratedKeys().getInt(1));
+//            }else{
+//                return null;
+//            }
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return user;
     }
 }
