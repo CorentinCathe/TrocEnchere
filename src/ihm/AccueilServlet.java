@@ -42,17 +42,14 @@ public class AccueilServlet extends HttpServlet {
             request.getSession().setAttribute("connected",false);
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/Accueil.jsp");
             rd.forward(request, response);
-        } else if (request.getParameter("profil")!= null) {
+            return;
+        }
+        if (request.getParameter("profil")!= null) {
             request.setAttribute("isConnected", true);
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/Accueil.jsp");
             rd.forward(request, response);
         }
-
-
-
-
-
-
+        return;
     }
 
 }
