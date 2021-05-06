@@ -18,14 +18,14 @@
         <h1 class="title">Mon Profil</h1>
         <% Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("user");%>
         <ul class="list-info">
-            <li class="info"><p>pseudo :</p><%= utilisateur.getPseudo() %></li>
-            <li class="info"><p>nom :</p><%= utilisateur.getNom() %></li>
-            <li class="info"><p>prenom :</p><%= utilisateur.getPrenom() %></li>
-            <li class="info"><p>email :</p><%= utilisateur.getEmail() %></li>
-            <li class="info"><p>tel :</p><%= utilisateur.getTel() %></li>
-            <li class="info"><p>rue :</p><%= utilisateur.getRue() %></li>
-            <li class="info"><p>cp :</p><%= utilisateur.getCP() %></li>
-            <li class="info"><p>ville :</p><%= utilisateur.getVille() %></li>
+            <li class="info"><p>pseudo :</p>: ${user.getPseudo()} </li>
+            <li class="info"><p>nom :</p>${user.getNom()} </li>
+            <li class="info"><p>prenom :</p>${user.getPrenom()} </li>
+            <li class="info"><p>email :${user.getEmail()} </li>
+            <li class="info"><p>tel :</p>${user.getTel()} </li>
+            <li class="info"><p>rue :</p>${user.getRue()} </li>
+            <li class="info"><p>cp :</p>${user.getCP()} </li>
+            <li class="info"><p>ville :</p>${user.getVille()} </li>
         </ul>
         <div>
             <form action="${pageContext.request.contextPath}/majprofil" method="get">
@@ -33,7 +33,6 @@
             </form>
         </div>
     </div>
-
     <div class="illu">
         <%@include file="assets/illuInfProfil.svg" %>
     </div>

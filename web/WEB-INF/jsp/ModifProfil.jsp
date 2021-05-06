@@ -19,17 +19,17 @@
         <h1>Mon Profil</h1>
     </div>
     <div class="form">
-        <%= request.getParameter("pwVerification")%>
-        <%= request.getParameter("newPwVerification")%>
+<%--        <%= request.getParameter("pwVerification")%>--%>
+<%--        <%= request.getParameter("newPwVerification")%>--%>
         <form id="inscription-form" action = "${pageContext.request.contextPath}/majprofil" method="post">
-            <input type="text" placeholder="Pseudo" id="username" name="username" required autofocus/>
-            <input type="text" placeholder="Prénom" id="firstName" name="firstName" required />
-            <input type="text" placeholder="Nom" id="lastName" name="lastName" required />
-            <input type="tel" placeholder="Téléphone" id="phoneNumber" name="phoneNumber" required />
-            <input type="email" placeholder="email" id="mail" name="mail" required />
-            <input type="text" placeholder="Adresse" id="adresse" name="adresse" required />
-            <input pattern="[0-9]{5}" type="text" placeholder="Code Postal" name="cp" required />
-            <input type="text" placeholder="Ville" id="city" name="city" required />
+            <input type="text" placeholder="Pseudo" id="username" name="username" value="${user.getPseudo()}" required readonly/>
+            <input type="text" placeholder="Prénom" id="firstName" name="firstName" value="${user.getPrenom()}" required />
+            <input type="text" placeholder="Nom" id="lastName" name="lastName" value="${user.getNom()}" required />
+            <input type="tel" placeholder="Téléphone" id="phoneNumber" name="phoneNumber" value="${user.getTel()}" required />
+            <input type="email" placeholder="email" id="mail" name="mail" value="${user.getEmail()}" required readonly />
+            <input type="text" placeholder="Adresse" id="adresse" name="adresse" value="${user.getRue()}" required />
+            <input pattern="[0-9]{5}" type="text" placeholder="Code Postal" name="cp" value="${user.getCP()}" required />
+            <input type="text" placeholder="Ville" id="city" name="city" value="${user.getVille()}" required />
             <input type="password" placeholder="Mot de passe" id="password" name="password" required />
             <input type="password" placeholder="Mot de passe" id="newpassword" name="newpassword" />
             <input type="password" placeholder="Confirmer mot de passe" id="confirmPassword" name="confirmPassword" />
