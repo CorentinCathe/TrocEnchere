@@ -5,7 +5,56 @@
     align-items: center;
     height: 95vh;
 }
+
+.container {
+    width: 400px;
+    padding: 20px;
+    color: #FFFFFF;
+    margin: 2em auto;
+    overflow: hidden;
+    background: #9f61a3;
+    box-shadow: 0 0 20px 0px rgb(47, 47, 47),
+    0 0 20px 0px rgba(107, 104, 104, 0);
+
+}
+
 .list-info{
     list-style: none;
+    text-align: center;
+    margin: 50px;
 }
-.info
+
+.info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.info p{
+    font-size: 20pt;
+}
+
+.maj-button{
+    width: 100%;
+    color: #fff;
+    background: #6c0277;
+    padding:17px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s linear;
+    text-transform: uppercase;
+}
+
+.maj-button:hover{
+    color: #6c0277;
+    background: #d0afd1;
+}
+
+
+.container .title{
+    font-size: 25px;
+    font-weight: 100;
+    margin: 10px 0 0 0;
+    font-family: 'Raleway', sans-serif;
+}
