@@ -18,21 +18,7 @@ public class EnchereDAOImpl implements EnchereDAO{
     public static final String UPDATEUSER = "UPDATE UTILISATEURS SET nom = ?,prenom = ?,tel = ?,rue = ?,cp = ?,ville = ?,mdp = ? WHERE pseudo = ? or email = ?";
 
     @Override
-    public List<Enchere> selectAll() {
-        List<Enchere> listeEnchere = new ArrayList<>();
-        try (Connection cnx = ConnectionProvider.getConnection();
-        ){
-            Statement psmt = cnx.createStatement();
-            ResultSet rs = psmt.executeQuery(SELECTALLENCHERE);
-            while(rs.next()){
-                Enchere enchere = new Enchere(rs.getInt("id"),rs.getDate("date"), rs.getInt("montant"), rs.getInt("id_article"), rs.getInt("id_utilisateur"));
-                listeEnchere.add(enchere);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return listeEnchere;
-    }
+    public List<Enchere> selectAll() {  return null; }
 
     @Override
     public List<Enchere> selectAllByIdArticle(int id) {
