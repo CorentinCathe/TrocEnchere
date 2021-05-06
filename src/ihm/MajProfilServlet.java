@@ -14,12 +14,16 @@ import java.io.IOException;
 public class MajProfilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Boolean isOnPageInscription = false;
+        req.setAttribute("isOnPageInscription",isOnPageInscription);
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/ModifProfil.jsp");
         rd.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Boolean isOnPageInscription = false;
+        req.setAttribute("isOnPageInscription",isOnPageInscription);
         String username = req.getParameter("username");
         String nom = req.getParameter("firstName");
         String prenom = req.getParameter("lastName");
