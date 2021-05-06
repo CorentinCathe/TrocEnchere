@@ -15,6 +15,8 @@ import java.io.IOException;
 public class AfficherProfilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Boolean isOnPageInscription = false;
+        req.setAttribute("isOnPageInscription",isOnPageInscription);
         System.out.println(((Utilisateur)req.getSession().getAttribute("user")).getPrenom());
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/AfficherProfil.jsp");
         rd.forward(req, resp);

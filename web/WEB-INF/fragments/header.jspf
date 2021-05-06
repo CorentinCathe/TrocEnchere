@@ -1,0 +1,57 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="bo.Utilisateur" %>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/Header.css">
+<header>
+
+    <div class="logo">
+        <a class="logo-content" href="${pageContext.request.contextPath}/accueil">Troc Enchere</a>
+    </div>
+    <section class="menu-container">
+        <% Boolean resultIsConnected = (Boolean) request.getSession().getAttribute("connected");%>
+        <c:choose>
+            <c:when test= "<%= resultIsConnected!=null && resultIsConnected%>" >
+                <% Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("user"); %>
+                <ul class="menu">
+                    <li class="menu-btn">
+                        <form action="${pageContext.request.contextPath}/enchere" method="post">
+                            <button class="button-item" type="submit" value="Enchères" name="enchere">Enchères</button>
+                        </form>
+                    </li>
+                    <li class="menu-btn">
+                        <form action="${pageContext.request.contextPath}/afficherprofil" method="get">
+                            <button class="button-item" type="submit" value="Profil" name="profil">Profil</button>
+                        </form>
+                    </li>
+                    <li class="menu-btn">
+                        <form action="${pageContext.request.contextPath}/vendre" method="post">
+                            <button class="button-item" type="submit" value="Vendre article" name="vendre">Vendre article</button>
+                        </form>
+                    </li>
+                    <li class="menu-btn">
+                        <form action="${pageContext.request.contextPath}/accueil" method="post">
+                            <button class="button-item" type="submit" value="Se déconnecter" name="disconnect">Se déconnecter</button>
+                        </form>
+                    </li>
+                </ul>
+            </c:when>
+            <c:when test="${isOnPageInscription}">
+            </c:when>
+            <c:otherwise>
+                <ul class="menu">
+                    <li class="menu-btn">
+                        <form action="${pageContext.request.contextPath}/inscription" method="get">
+                            <button class="button-item" type="submit" value="s'inscrire">S'inscrire</button>
+                        </form>
+                    </li>
+                    <li class="menu-btn">
+                        <form action="${pageContext.request.contextPath}/login" method="post">
+                            <button class="button-item" type="submit" value="Se connecter">Se connecter</button>
+                        </form>
+                    </li>
+                </ul>
+            </c:otherwise>
+        </c:choose>
+    </section>
+</header>

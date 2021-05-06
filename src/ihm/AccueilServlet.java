@@ -17,6 +17,8 @@ public class AccueilServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Boolean isOnPageInscription = false;
+        request.setAttribute("isOnPageInscription",isOnPageInscription);
         System.out.println(request.getSession().getAttribute("user"));
         if(request.getSession().getAttribute("connected")==null)
             request.getSession().setAttribute("connected", false);
@@ -25,6 +27,8 @@ public class AccueilServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Boolean isOnPageInscription = false;
+        request.setAttribute("isOnPageInscription",isOnPageInscription);
         if(request.getParameter("disconnect")!=null){
             request.getSession().setAttribute("user",null);
             request.getSession().setAttribute("connected",false);

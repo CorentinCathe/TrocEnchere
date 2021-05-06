@@ -1,0 +1,11 @@
+.content{
+    display: flex;
+    background: linear-gradient(to left, #d9b1da, #e8d6e8);
+    font-family: "Roboto", sans-serif;
+    align-items: center;
+    height: 95vh;
+}
+.list-info{
+    list-style: none;
+}
+.info

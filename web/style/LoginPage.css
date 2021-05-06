@@ -10,6 +10,7 @@ body{
     background: linear-gradient(to left, #d0afd1, #e8d6e8);
     font-family: "Roboto", sans-serif;
     overflow: hidden;
+    align-items: flex-end;
 }
 
 .title{
@@ -65,4 +66,25 @@ body{
 }
 .form button:hover,.form button:active,.form button:focus {
     background: #6c0277;
+}
+
+@media (max-width: 1280px) {
+    .illu{
+        width: 55%;
+        height: 60%;
+    }
+    .title{
+        font-size: 2vw;
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .illu{
+        display: none;
+    }
+    .title{
+        font-size: 2vw;
+        width: 100%;
+    }
 }

@@ -1,13 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 body{
-    margin: 3%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.main-content{
     display: flex;
     justify-content: space-around;
     background: linear-gradient(to left, #d9b1da, #e8d6e8);
     font-family: "Roboto", sans-serif;
     align-items: center;
+    height: 95vh;
 }
+
 .content{
     flex-grow: 1;
     display: flex;
