@@ -1,6 +1,7 @@
 package ihm;
 import bll.UtilisateurManager;
 import bo.Utilisateur;
+import com.sun.source.tree.ReturnTree;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,14 +32,15 @@ public class LoginServlet extends HttpServlet{
             req.setAttribute("message","Attention , username ou mot de passe incorrect");
             RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/LoginPage.jsp");
             rd.forward(req, resp);
-        }else{
-
-            HttpSession session = req.getSession();
-            session.setAttribute("user",user);
-            session.setAttribute("connected",true);
-//            req.setAttribute("user", user);
-            resp.sendRedirect(req.getContextPath()+"/accueil");
+            return;
         }
+
+        HttpSession session = req.getSession();
+        session.setAttribute("user",user);
+        session.setAttribute("connected",true);
+//            req.setAttribute("user", user);
+        resp.sendRedirect(req.getContextPath()+"/accueil");
+
 
     }
 }

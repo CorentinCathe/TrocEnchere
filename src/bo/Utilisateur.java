@@ -1,7 +1,7 @@
 package bo;
 
 public class Utilisateur {
-    private int id;
+    private Integer id;
     private String pseudo;
     private String nom;
     private String prenom;
@@ -15,7 +15,7 @@ public class Utilisateur {
     private boolean admin;
 
     public Utilisateur(){}
-    public Utilisateur(int id, String pseudo, String nom, String prenom, String email, String tel, String rue, String CP, String ville, String mdp, int credit, boolean admin) {
+    public Utilisateur(Integer id, String pseudo, String nom, String prenom, String email, String tel, String rue, String CP, String ville, String mdp, int credit, boolean admin) {
         this.id = id;
         this.pseudo = pseudo;
         this.nom = nom;
@@ -34,7 +34,7 @@ public class Utilisateur {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
