@@ -1,6 +1,7 @@
 package dal;
 
 import bo.UtilisateurBO;
+import dal.security.SecurityImpl;
 
 import java.sql.*;
 
@@ -84,7 +85,10 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
             psmt.setString(2,user);
             ResultSet rs = psmt.executeQuery();
             if (rs.next()){
-                return pass.equals(rs.getString("mdp"));
+                System.out.println("password a check :"+pass);
+                System.out.println("password hash :"+rs.getString("mdp"));
+                System.out.println(SecurityImpl.checkPass(pass,(rs.getString("mdp"))));
+                return SecurityImpl.checkPass(pass,(rs.getString("mdp")));
             }else{
                 return false;
             }

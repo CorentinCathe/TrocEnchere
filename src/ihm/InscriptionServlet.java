@@ -1,6 +1,7 @@
 package ihm;
 import bll.UtilisateurManager;
 import bo.UtilisateurBO;
+import dal.security.SecurityImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,13 +32,22 @@ public class InscriptionServlet extends HttpServlet {
         String cp = req.getParameter("cp");
         String ville = req.getParameter("city");
         String mdp = req.getParameter("password");
-
-        UtilisateurManager um = new UtilisateurManager();
-
         UtilisateurBO user = new UtilisateurBO(0, username, nom, prenom, email, tel, rue, cp, ville, mdp, 0, true);
-        user = um.ajouterUnUtilisateur(user);
-        System.out.println(user);
-        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/LoginPage.jsp");
+        System.out.println(SecurityImpl.checkUserSafe(user));
+        if (SecurityImpl.checkUserSafe(user)) {
+            System.out.println("original : " + mdp);
+            mdp = SecurityImpl.hashPassword(mdp);
+            System.out.println("hash : " + mdp);
+            user.setMdp(mdp);
+            UtilisateurManager um = new UtilisateurManager();
+            um.ajouterUnUtilisateur(user);
+            RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/LoginPage.jsp");
+            rd.forward(req, resp);
+            return;
+        }
+        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/Inscription.jsp");
         rd.forward(req, resp);
+        return;
+
     }
 }
