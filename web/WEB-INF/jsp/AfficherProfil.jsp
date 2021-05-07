@@ -36,7 +36,6 @@
     <div class="illu">
         <%@include file="assets/illuInfProfil.svg" %>
     </div>
-    </div>
 </section>
 </body>
 </html>
