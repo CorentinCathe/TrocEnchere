@@ -2,8 +2,8 @@ package dal;
 
 public class DAOFactory {
 
-    public static UtilisateurDAO getUtilisateurDAO() {
-        return new UtilisateurDAO();
+    public static UtilisateurDAOImpl getUtilisateurDAO() {
+        return new UtilisateurDAOImpl();
     }
     public static ArticleVenduDAOImpl getArticleVenduDAO() {
         return new ArticleVenduDAOImpl();

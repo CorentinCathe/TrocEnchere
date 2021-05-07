@@ -1,4 +1,4 @@
-<%@ page import="bo.Utilisateur" %>
+<%@ page import="bo.UtilisateurBO" %>
 <!DOCTYPE html>
 <html lang="fr">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,7 +16,7 @@
 <section class="content">
     <div class="container">
         <h1 class="title">Mon Profil</h1>
-        <% Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("user");%>
+        <% UtilisateurBO utilisateur = (UtilisateurBO) request.getSession().getAttribute("user");%>
         <ul class="list-info">
             <li class="info"><p>pseudo :</p>: ${user.getPseudo()} </li>
             <li class="info"><p>nom :</p>${user.getNom()} </li>

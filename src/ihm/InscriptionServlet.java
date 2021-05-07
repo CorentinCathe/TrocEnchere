@@ -1,6 +1,6 @@
 package ihm;
 import bll.UtilisateurManager;
-import bo.Utilisateur;
+import bo.UtilisateurBO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
 
 @WebServlet("/inscription")
 public class InscriptionServlet extends HttpServlet {
@@ -36,7 +34,7 @@ public class InscriptionServlet extends HttpServlet {
 
         UtilisateurManager um = new UtilisateurManager();
 
-        Utilisateur user = new Utilisateur(0, username, nom, prenom, email, tel, rue, cp, ville, mdp, 0, true);
+        UtilisateurBO user = new UtilisateurBO(0, username, nom, prenom, email, tel, rue, cp, ville, mdp, 0, true);
         user = um.ajouterUnUtilisateur(user);
         System.out.println(user);
         RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/LoginPage.jsp");

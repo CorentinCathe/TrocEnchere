@@ -1,7 +1,6 @@
 package dal;
 
 import bo.CategorieBO;
-import bo.Utilisateur;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
