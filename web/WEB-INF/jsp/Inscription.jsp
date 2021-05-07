@@ -68,9 +68,10 @@
 
             </form>
         </div>
+        <form id="cancel" action="${pageContext.request.contextPath}/accueil" method="get"></form>
         <div class="buttonGroupe">
             <button form="inscription-form" type="submit" title="create" value="create"> Créer</button>
-            <button form="inscription-form" type="submit" title="cancel" value="cancel"> Annuler</button>
+            <button form="cancel" type="submit" title="cancel" value="cancel">Annuler</button>
         </div>
     </section>
     <div class="illu illu_right">
