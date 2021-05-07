@@ -1,7 +1,5 @@
 package ihm;
-import bll.UtilisateurManager;
-import bo.Utilisateur;
-import jdk.jshell.execution.Util;
+import bo.UtilisateurBO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,14 +15,14 @@ public class AfficherProfilServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Boolean isOnPageInscription = false;
         req.setAttribute("isOnPageInscription",isOnPageInscription);
-        System.out.println(((Utilisateur)req.getSession().getAttribute("user")).getPrenom());
+        System.out.println(((UtilisateurBO)req.getSession().getAttribute("user")).getPrenom());
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/AfficherProfil.jsp");
         rd.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(((Utilisateur)req.getSession().getAttribute("user")).getPrenom());
+        System.out.println(((UtilisateurBO)req.getSession().getAttribute("user")).getPrenom());
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/AfficherProfil.jsp");
         rd.forward(req, resp);
     }

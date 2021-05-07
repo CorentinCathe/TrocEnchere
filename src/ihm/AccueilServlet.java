@@ -49,7 +49,7 @@ public class AccueilServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/Accueil.jsp");
             rd.forward(request, response);
         }
-        return;
+
     }
 
 }

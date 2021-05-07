@@ -11,10 +11,10 @@ public class ArticleVenduBO {
     private Date dateFinEncheres;
     private int prixInitial;
     private int prixVente;
-    private Utilisateur utilisateur;
+    private UtilisateurBO utilisateur;
     private CategorieBO categorie;
 
-    public ArticleVenduBO(Integer id, String nom, String description, Date dateDebutEncheres, Date dateFinEncheres, int prixInitial, int prixVente, Utilisateur utilisateur, CategorieBO categorie) {
+    public ArticleVenduBO(Integer id, String nom, String description, Date dateDebutEncheres, Date dateFinEncheres, int prixInitial, int prixVente, UtilisateurBO utilisateur, CategorieBO categorie) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -34,7 +34,7 @@ public class ArticleVenduBO {
         this.dateFinEncheres = dateFinEncheres;
         this.prixInitial = prixInitial;
         this.prixVente = prixVente;
-        this.utilisateur = new Utilisateur();
+        this.utilisateur = new UtilisateurBO();
         this.categorie = new CategorieBO();
     }
 
@@ -94,11 +94,11 @@ public class ArticleVenduBO {
         this.prixVente = prixVente;
     }
 
-    public Utilisateur getUtilisateur() {
+    public UtilisateurBO getUtilisateur() {
         return utilisateur;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
+    public void setUtilisateur(UtilisateurBO utilisateur) {
         this.utilisateur = utilisateur;
     }
 

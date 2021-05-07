@@ -1,7 +1,6 @@
 package ihm;
 import bll.UtilisateurManager;
-import bo.Utilisateur;
-import com.sun.source.tree.ReturnTree;
+import bo.UtilisateurBO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,7 +26,7 @@ public class LoginServlet extends HttpServlet{
         String password = req.getParameter("password");
 
         UtilisateurManager um = new UtilisateurManager();
-        Utilisateur user = um.connection(username,password);
+        UtilisateurBO user = um.connection(username,password);
         if(user == null) {
             req.setAttribute("message","Attention , username ou mot de passe incorrect");
             RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/LoginPage.jsp");

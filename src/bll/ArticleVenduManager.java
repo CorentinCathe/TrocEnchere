@@ -1,14 +1,11 @@
 package bll;
 
 import bo.ArticleVenduBO;
-import bo.Utilisateur;
-import dal.ArticleVenduDAO;
 import dal.ArticleVenduDAOImpl;
 import dal.DAOFactory;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 public class ArticleVenduManager {
 

@@ -2,7 +2,7 @@ package dal;
 
 import bo.ArticleVenduBO;
 import bo.CategorieBO;
-import bo.Utilisateur;
+import bo.UtilisateurBO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
             if(isResultSet) {
                 ResultSet rs = psmt.getResultSet();
-                UtilisateurDAO uDAO = new UtilisateurDAO();
+                UtilisateurDAOImpl uDAO = new UtilisateurDAOImpl();
                 CategorieDAO cDAO = new CategorieDAOImpl();
                 while(rs.next()){
                     int id = rs.getInt(1);
@@ -37,7 +37,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
                     int utilisateurId = rs.getInt(8);
                     int categorieId = rs.getInt(9);
                     ArticleVenduBO av = new ArticleVenduBO(id, nom, description, dateDebut, dateFin, prixInitial, prixVente);
-                    Utilisateur user = uDAO.selectUserById(utilisateurId);
+                    UtilisateurBO user = uDAO.selectUserById(utilisateurId);
                     CategorieBO categorie = cDAO.selectById(categorieId);
                     av.setCategorie(categorie);
                     av.setUtilisateur(user);
@@ -63,7 +63,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
             if(isResultSet) {
                 ResultSet rs = psmt.getResultSet();
-                UtilisateurDAO uDAO = new UtilisateurDAO();
+                UtilisateurDAOImpl uDAO = new UtilisateurDAOImpl();
                 CategorieDAO cDAO = new CategorieDAOImpl();
 
                 while(rs.next()){
@@ -77,7 +77,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
                     int utilisateurId = rs.getInt(8);
                     int categorieId = rs.getInt(9);
                     ArticleVenduBO av = new ArticleVenduBO(idAV, nom, description, dateDebut, dateFin, prixInitial, prixVente);
-                    Utilisateur user = uDAO.selectUserById(utilisateurId);
+                    UtilisateurBO user = uDAO.selectUserById(utilisateurId);
                     CategorieBO categorie = cDAO.selectById(categorieId);
                     av.setCategorie(categorie);
                     av.setUtilisateur(user);
@@ -103,7 +103,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
             if(isResultSet) {
                 ResultSet rs = psmt.getResultSet();
-                UtilisateurDAO uDAO = new UtilisateurDAO();
+                UtilisateurDAOImpl uDAO = new UtilisateurDAOImpl();
                 CategorieDAO cDAO = new CategorieDAOImpl();
 
                 while(rs.next()){
@@ -117,7 +117,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
                     int utilisateurId = rs.getInt(8);
                     int categorieId = rs.getInt(9);
                     ArticleVenduBO av = new ArticleVenduBO(idAV, nom, description, dateDebut, dateFin, prixInitial, prixVente);
-                    Utilisateur user = uDAO.selectUserById(utilisateurId);
+                    UtilisateurBO user = uDAO.selectUserById(utilisateurId);
                     CategorieBO categorie = cDAO.selectById(categorieId);
                     av.setCategorie(categorie);
                     av.setUtilisateur(user);

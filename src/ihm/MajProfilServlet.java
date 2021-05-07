@@ -1,6 +1,6 @@
 package ihm;
 import bll.UtilisateurManager;
-import bo.Utilisateur;
+import bo.UtilisateurBO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,10 +25,10 @@ public class MajProfilServlet extends HttpServlet {
         Boolean isOnPageInscription = false;
         req.setAttribute("isOnPageInscription",isOnPageInscription);
 
-        String username = ((Utilisateur) req.getSession().getAttribute("user")).getPseudo();
+        String username = ((UtilisateurBO) req.getSession().getAttribute("user")).getPseudo();
         String nom = req.getParameter("firstName");
         String prenom = req.getParameter("lastName");
-        String email = ((Utilisateur) req.getSession().getAttribute("user")).getEmail();
+        String email = ((UtilisateurBO) req.getSession().getAttribute("user")).getEmail();
         String tel = req.getParameter("phoneNumber");
         String rue = req.getParameter("adresse");
         String cp = req.getParameter("cp");
@@ -54,7 +54,7 @@ public class MajProfilServlet extends HttpServlet {
             if (!newmdp.equals("") && !newmdp.equals(mdp)){
                 mdp = newmdp;
             }
-            Utilisateur user = new Utilisateur(0, username, nom, prenom, email, tel, rue, cp, ville, mdp, 0, true);
+            UtilisateurBO user = new UtilisateurBO(0, username, nom, prenom, email, tel, rue, cp, ville, mdp, 0, true);
             boolean res = um.modifierUnUtilisateur(user);
             System.out.println(res);
             req.getSession().setAttribute("user",user);
