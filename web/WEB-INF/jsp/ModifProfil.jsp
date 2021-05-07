@@ -7,20 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" href="./assets/shopping-cart.png" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/Inscription.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/ModifProfil.css">
 
     <title>Create Account</title>
 <body>
-<div class="illu illu_left">
-    <%@include file="assets/inscrptionIlluLeft.svg" %>
-</div>
+<%@ include file="/WEB-INF/fragments/header.jspf" %>
 <section class="content">
     <div class="title">
         <h1>Mon Profil</h1>
     </div>
     <div class="form">
-<%--        <%= request.getParameter("pwVerification")%>--%>
-<%--        <%= request.getParameter("newPwVerification")%>--%>
         <form id="inscription-form" action = "${pageContext.request.contextPath}/majprofil" method="post">
             <input type="text" placeholder="Pseudo" id="username" name="username" value="${user.getPseudo()}" required readonly/>
             <input type="text" placeholder="Prénom" id="firstName" name="firstName" value="${user.getPrenom()}" required />
@@ -34,14 +30,12 @@
             <input type="password" placeholder="Mot de passe" id="newpassword" name="newpassword" />
             <input type="password" placeholder="Confirmer mot de passe" id="confirmPassword" name="confirmPassword" />
         </form>
+        <form id="cancel" action="${pageContext.request.contextPath}/afficherprofil" method="get"></form>
     </div>
     <div class="buttonGroupe">
         <button form="inscription-form" type="submit" title="create"  value="create"> Créer </button>
-        <button form="inscription-form" type="submit" title="cancel" value="cancel"> Annuler</button>
+        <button form="cancel" type="submit" title="cancel" value="cancel">Annuler</button>
     </div>
 </section>
-<div class="illu illu_right">
-    <%@include file="assets/inscriptionIlluRight.svg" %>
-</div>
 </body>
 </html>
