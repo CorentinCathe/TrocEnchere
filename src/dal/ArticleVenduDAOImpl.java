@@ -15,7 +15,9 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     public static final String SELECT_BY_NAME_CATEGORIE = "SELECT * FROM ARTICLES_VENDUS a WHERE a.nom LIKE ? and a.id_categorie = ? ";
     public static final String SELECT_BY_UTILISATEUR_ID = "SELECT * FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ?";
     public static final String SELECT_BY_CATEGORIE_ID = "SELECT * FROM ARTICLES_VENDUS a WHERE a.id_categorie = ?";
-    public static final String SELECT_BY_ARTICLE_ID = "SELECT * FROM ARTICLE_VENDUS a WHERE a.id = ?";
+    public static final String SELECT_BY_ARTICLE_ID = "SELECT * FROM ARTICLES_VENDUS a WHERE a.id = ?";
+    public static final String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,?,?,?)";
+
 
     @Override
     public List<ArticleVenduBO> selectAll() throws SQLException {
@@ -255,5 +257,35 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
             e.printStackTrace();
         }
         return listeArticlesVendus;
+    }
+
+    @Override
+    public ArticleVenduBO insert(ArticleVenduBO article) throws SQLException {
+        try (Connection cnx = ConnectionProvider.getConnection();
+        ) {
+            int res;
+            PreparedStatement psmt = cnx.prepareStatement(INSERT_ARTICLE);
+            psmt.setString(1,article.getNom());
+            psmt.setString(2,article.getDescription());
+            psmt.setDate(3,article.getDateDebutEncheres());
+            psmt.setDate(4,article.getDateFinEncheres());
+            psmt.setInt(5,article.getPrixInitial());
+            psmt.setInt(6, article.getPrixVente());
+            psmt.setInt(7,article.getUtilisateur().getId());
+            psmt.setInt(8,article.getCategorie().getId());
+            psmt.execute();
+            try(ResultSet generatedKeys = psmt.getGeneratedKeys()){
+                if(generatedKeys.next()){
+                    res = generatedKeys.getInt(1);
+                    System.out.println(res);
+                    article.setId(res);
+                } else {
+                    throw new SQLException("SQL Problem");
+                }
+            }
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return article;
     }
 }

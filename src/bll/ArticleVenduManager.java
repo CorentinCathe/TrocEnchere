@@ -32,4 +32,9 @@ public class ArticleVenduManager {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.selectByNameAndCategorie(name, categorie);
     }
+
+    public ArticleVenduBO insertArticle(ArticleVenduBO article) throws SQLException {
+        ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
+        return aDAO.insert(article);
+    }
 }
