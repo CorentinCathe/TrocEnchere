@@ -36,7 +36,7 @@
             <ul class="list-article">
                 <c:forEach items="${listeArticlesVendus}" var="article">
                     <li class="article">
-                        <div class="article-name"><p>${article.nom}</p></div>
+                         <div class="article-name"><c:if test= "${connected != null && connected}"><a href="DetailVente" target="_blank"></c:if><p>${article.nom}</p><c:if test= "${connected != null && connected}"></a></c:if></div>
                         <div class="article-price"><p>Prix : ${article.prixVente} points</p></div>
                         <div class="article-date-fin"><p>Fin des enchères : ${article.dateFinEncheres}</p></div>
                         <div class="vendeur"><p>Vendeur : ${article.utilisateur.pseudo}</p></div>
