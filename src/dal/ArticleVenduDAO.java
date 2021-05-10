@@ -17,6 +17,6 @@ public interface ArticleVenduDAO {
 
     public List<ArticleVenduBO> selectByName(String name) throws SQLException;
 
-    public List<ArticleVenduBO> selectByNameAndCategorie(String name, Integer idCategorie);
+    public List<ArticleVenduBO> selectByNameAndCategorie(String name, Integer idCategorie) throws SQLException;
 
 }

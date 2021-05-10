@@ -21,14 +21,13 @@
         <div class="filter">
             <p>Filtres :</p>
             <form id="filter-form" action="${pageContext.request.contextPath}/accueil" method="get">
-                <input type="text" placeholder="Le nom de l'article" id="articlename" value="articlename">
+                <input type="text" placeholder="Le nom de l'article" id="articlename" name="articlename" value=${articlename}>
                 <label for="categorieList">Catégorie : </label>
                 <select name="categorieSelection" id="categorieList">
-                    <option class="categorie" value="toutes" selected>Toutes</option>
-                    <option class="categorie" value="informatique">Informatique</option>
-                    <option class="categorie" value="ammeublement">Ammeublement</option>
-                    <option class="categorie" value="sport&loisirs">Sport & Loisirs</option>
-                    <option class="categorie" value="vetement">Vêtement</option>
+                    <option class="categorie" value="0" selected>Toutes</option>
+                    <c:forEach items="${listCat}" var="cat">
+                        <option class="categorie" value=${cat.id} <c:if test="${ cat.id == categorieSelection }"> selected</c:if>>${cat.libelle}</option>
+                    </c:forEach>
                 </select>
             </form>
             <button form="filter-form" class="search-button" type="submit" value="search">Rechercher</button>
