@@ -1,13 +1,13 @@
 package dal;
 
-import bo.Enchere;
+import bo.EnchereBO;
 
 import java.util.List;
 
 public interface EnchereDAO {
-    public List<Enchere> selectAll();
-    public List<Enchere> selectAllByIdArticle(int id);
-    public Enchere selectAllByUsername(int id);
-    public Enchere selectOneById(int id);
-    public Enchere insertEnchere(Enchere enchere);
+    public List<EnchereBO> selectAll();
+    public List<EnchereBO> selectAllByIdArticle(int id);
+    public List<EnchereBO> selectAllByUserId(int id);
+    public EnchereBO selectOneById(int id);
+    public EnchereBO insertEnchere(EnchereBO enchereBO);
 }

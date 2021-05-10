@@ -13,4 +13,6 @@ public interface ArticleVenduDAO {
 
     public List<ArticleVenduBO> selectByCategorieId(Integer id) throws SQLException;
 
+    public ArticleVenduBO selectArticleById(Integer id) throws SQLException;
+
 }
