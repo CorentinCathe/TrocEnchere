@@ -16,8 +16,8 @@
 
                 <ul class="menu">
                     <li class="menu-btn">
-                        <form action="${pageContext.request.contextPath}/enchere" method="post">
-                            <button class="button-item" type="submit" value="Enchères" name="enchere">Enchères</button>
+                        <form action="${pageContext.request.contextPath}/enchereBO" method="post">
+                            <button class="button-item" type="submit" value="Enchères" name="enchereBO">Enchères</button>
                         </form>
                     </li>
                     <li class="menu-btn">

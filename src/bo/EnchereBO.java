@@ -1,20 +1,22 @@
 package bo;
 
+import jdk.jshell.execution.Util;
+
 import java.sql.Date;
 
-public class Enchere {
+public class EnchereBO {
     private int id;
     private Date date;
     private int montant;
     private ArticleVenduBO article;
-    private int idUtilisateur;
+    private Utilisateur utilisateur;
 
-    public Enchere(int id, Date date, int montant, ArticleVenduBO article, int idUtilisateur) {
+    public EnchereBO(int id, Date date, int montant, ArticleVenduBO article, Utilisateur utilisateur) {
         this.id = id;
         this.date = date;
         this.montant = montant;
         this.article = article;
-        this.idUtilisateur = idUtilisateur;
+        this.utilisateur = utilisateur;
     }
 
     public int getId() {
@@ -41,19 +43,19 @@ public class Enchere {
         this.montant = montant;
     }
 
-    public ArticleVenduBO getIdArticle() {
+    public ArticleVenduBO getArticle() {
         return article;
     }
 
-    public void setIdArticle(ArticleVenduBO article) {
+    public void setArticle(ArticleVenduBO article) {
         this.article = article;
     }
 
-    public int getIdUtilisateur() {
-        return idUtilisateur;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setIdUtilisateur(int idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 }
