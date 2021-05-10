@@ -1,6 +1,6 @@
 package bo;
 
-public class Utilisateur {
+public class UtilisateurBO {
     private Integer id;
     private String pseudo;
     private String nom;
@@ -14,8 +14,8 @@ public class Utilisateur {
     private int credit;
     private boolean admin;
 
-    public Utilisateur(){}
-    public Utilisateur(Integer id, String pseudo, String nom, String prenom, String email, String tel, String rue, String CP, String ville, String mdp, int credit, boolean admin) {
+    public UtilisateurBO(){}
+    public UtilisateurBO(Integer id, String pseudo, String nom, String prenom, String email, String tel, String rue, String CP, String ville, String mdp, int credit, boolean admin) {
         this.id = id;
         this.pseudo = pseudo;
         this.nom = nom;

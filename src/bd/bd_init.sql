@@ -28,7 +28,7 @@ CREATE TABLE UTILISATEURS (
                               rue              VARCHAR(30) NOT NULL,
                               CP               VARCHAR(10) NOT NULL,
                               ville            VARCHAR(50) NOT NULL,
-                              mdp              VARCHAR(30) NOT NULL,
+                              mdp              VARCHAR(100) NOT NULL,
                               credit           INTEGER NOT NULL,
                               admin            bit NOT NULL
 )

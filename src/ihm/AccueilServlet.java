@@ -26,7 +26,10 @@ public class AccueilServlet extends HttpServlet {
             request.getSession().setAttribute("connected", false);
             try {
                 ArticleVenduManager avm = new ArticleVenduManager();
-                request.setAttribute("MapArticlesUtilisateurs", avm.selectAll());
+                if(request.getAttribute("articlename") != null) {
+                    System.out.println(request.getAttribute("articlename"));
+                }
+                request.setAttribute("listeArticlesVendus", avm.selectAll());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -49,7 +52,7 @@ public class AccueilServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/Accueil.jsp");
             rd.forward(request, response);
         }
-        return;
+
     }
 
 }
