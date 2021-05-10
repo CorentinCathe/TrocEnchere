@@ -2,10 +2,13 @@ package ihm;
 
 import bll.ArticleVenduManager;
 import bll.CategorieManager;
+import bll.RetraitManager;
 import bll.UtilisateurManager;
 import bo.ArticleVenduBO;
 import bo.CategorieBO;
+import bo.RetraitBO;
 import bo.UtilisateurBO;
+import dal.RetraitDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,6 +43,7 @@ public class VendreArticleServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          try {
+             RetraitManager rm = new RetraitManager();
              ArticleVenduManager avm = new ArticleVenduManager();
              CategorieManager cm = new CategorieManager();
              String nomArticle = request.getParameter("articleName");
@@ -53,6 +57,13 @@ public class VendreArticleServlet extends HttpServlet {
              article.setCategorie(cm.selectById(categorieId));
              article.setUtilisateur(user);
              avm.insertArticle(article);
+
+             String rue = request.getParameter("rue");
+             String cp = request.getParameter("cp");
+             String ville = request.getParameter("ville");
+             RetraitBO retrait = new RetraitBO(article, rue, cp, ville);
+             rm.insertRetrait(retrait);
+
              RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/Accueil.jsp");
              rd.forward(request, response);
              return;

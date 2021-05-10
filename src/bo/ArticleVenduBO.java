@@ -26,6 +26,9 @@ public class ArticleVenduBO {
         this.categorie = categorie;
     }
 
+    public ArticleVenduBO() {
+    }
+
     public ArticleVenduBO(Integer id, String nom, String description, Date dateDebutEncheres, Date dateFinEncheres, int prixInitial, int prixVente) {
         this.id = id;
         this.nom = nom;
