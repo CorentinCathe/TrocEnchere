@@ -9,9 +9,9 @@ public class EnchereBO {
     private Date date;
     private int montant;
     private ArticleVenduBO article;
-    private Utilisateur utilisateur;
+    private UtilisateurBO utilisateur;
 
-    public EnchereBO(int id, Date date, int montant, ArticleVenduBO article, Utilisateur utilisateur) {
+    public EnchereBO(int id, Date date, int montant, ArticleVenduBO article, UtilisateurBO utilisateur) {
         this.id = id;
         this.date = date;
         this.montant = montant;
@@ -51,11 +51,11 @@ public class EnchereBO {
         this.article = article;
     }
 
-    public Utilisateur getUtilisateur() {
+    public UtilisateurBO getUtilisateur() {
         return utilisateur;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
+    public void setUtilisateur(UtilisateurBO utilisateur) {
         this.utilisateur = utilisateur;
     }
 }

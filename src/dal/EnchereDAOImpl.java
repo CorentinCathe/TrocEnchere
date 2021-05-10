@@ -2,7 +2,7 @@ package dal;
 
 import bo.ArticleVenduBO;
 import bo.EnchereBO;
-import bo.Utilisateur;
+import bo.UtilisateurBO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,14 +26,14 @@ public class EnchereDAOImpl implements EnchereDAO{
             if (isResultSet){
                 ResultSet rs = psmt.getResultSet();
                 ArticleVenduDAO aDAO = new ArticleVenduDAOImpl();
-                UtilisateurDAO uDAO = new UtilisateurDAO();
+                UtilisateurDAO uDAO = new UtilisateurDAOImpl();
                 while(rs.next()){
                     int id = rs.getInt(1);
                     Date date = rs.getDate(2);
                     int montant = rs.getInt(3);
                     int articleId = rs.getInt(4);
                     int utilisateurId = rs.getInt(5);
-                    Utilisateur user = uDAO.selectUserById(utilisateurId);
+                    UtilisateurBO user = uDAO.selectUserById(utilisateurId);
                     ArticleVenduBO article = aDAO.selectArticleById(articleId);
                     EnchereBO en = new EnchereBO(id,date,montant,article,user);
                     listEnchere.add(en);
@@ -55,13 +55,13 @@ public class EnchereDAOImpl implements EnchereDAO{
             if (isResultSet){
                 ResultSet rs = psmt.getResultSet();
                 ArticleVenduDAO aDAO = new ArticleVenduDAOImpl();
-                UtilisateurDAO uDAO = new UtilisateurDAO();
+                UtilisateurDAO uDAO = new UtilisateurDAOImpl();
                 while(rs.next()){
                     int id = rs.getInt("id");
                     Date date = rs.getDate("date");
                     int montant = rs.getInt("montant");
                     int utilisateurId = rs.getInt("id_utilisateur");
-                    Utilisateur user = uDAO.selectUserById(utilisateurId);
+                    UtilisateurBO user = uDAO.selectUserById(utilisateurId);
                     ArticleVenduBO article = aDAO.selectArticleById(id_article);
                     System.out.println(article);
                     EnchereBO en = new EnchereBO(id,date,montant,article,user);
@@ -86,13 +86,13 @@ public class EnchereDAOImpl implements EnchereDAO{
             if (isResultSet){
                 ResultSet rs = psmt.getResultSet();
                 ArticleVenduDAO aDAO = new ArticleVenduDAOImpl();
-                UtilisateurDAO uDAO = new UtilisateurDAO();
+                UtilisateurDAO uDAO = new UtilisateurDAOImpl();
                 while(rs.next()){
                     int id = rs.getInt("id");
                     Date date = rs.getDate("date");
                     int montant = rs.getInt("montant");
                     int articleId = rs.getInt("id_article");
-                    Utilisateur user = uDAO.selectUserById(id_user);
+                    UtilisateurBO user = uDAO.selectUserById(id_user);
                     ArticleVenduBO article = aDAO.selectArticleById(articleId);
                     EnchereBO en = new EnchereBO(id,date,montant,article,user);
                     listEnchere.add(en);
@@ -116,13 +116,13 @@ public class EnchereDAOImpl implements EnchereDAO{
             if (isResultSet){
                 ResultSet rs = psmt.getResultSet();
                 ArticleVenduDAO aDAO = new ArticleVenduDAOImpl();
-                UtilisateurDAO uDAO = new UtilisateurDAO();
+                UtilisateurDAO uDAO = new UtilisateurDAOImpl();
                 while(rs.next()){
                     Date date = rs.getDate("date");
                     int montant = rs.getInt("montant");
                     int articleId = rs.getInt("id_article");
                     int utilisateurId = rs.getInt("id_utilisateur");
-                    Utilisateur user = uDAO.selectUserById(utilisateurId);
+                    UtilisateurBO user = uDAO.selectUserById(utilisateurId);
                     ArticleVenduBO article = aDAO.selectArticleById(articleId);
                     enchere = new EnchereBO(id,date,montant,article,user);
                 }

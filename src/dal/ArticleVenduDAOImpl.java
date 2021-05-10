@@ -143,7 +143,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
             PreparedStatement psmt = cnx.prepareStatement(SELECT_BY_ARTICLE_ID);
             psmt.setInt(1, id);
             ResultSet rs = psmt.executeQuery();
-            UtilisateurDAO uDAO = new UtilisateurDAO();
+            UtilisateurDAO uDAO = new UtilisateurDAOImpl();
             CategorieDAO cDAO = new CategorieDAOImpl();
             if(rs.next()){
                 int idAV = rs.getInt(1);
@@ -156,7 +156,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
                 int utilisateurId = rs.getInt(8);
                 int categorieId = rs.getInt(9);
                 article = new ArticleVenduBO(idAV, nom, description, dateDebut, dateFin, prixInitial, prixVente);
-                Utilisateur user = uDAO.selectUserById(utilisateurId);
+                UtilisateurBO user = uDAO.selectUserById(utilisateurId);
                 CategorieBO categorie = cDAO.selectById(categorieId);
                 article.setCategorie(categorie);
                 article.setUtilisateur(user);
