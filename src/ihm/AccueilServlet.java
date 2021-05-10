@@ -21,18 +21,34 @@ public class AccueilServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Boolean isOnPageInscription = false;
         request.setAttribute("isOnPageInscription",isOnPageInscription);
-        System.out.println(request.getSession().getAttribute("user"));
-        if(request.getSession().getAttribute("connected")==null)
-            request.getSession().setAttribute("connected", false);
+        System.out.println("Connected : "+request.getSession().getAttribute("user")!=null);
+        if (request.getAttribute("articlename") != null && request.getAttribute("categorieSelection") != null) {
+            String articleName = (String) request.getAttribute("articlename");
+            int categorieSelection = (int) request.getAttribute("categorieSelection");
+            System.out.println("article name : "+articleName);
+            System.out.println("categorie name : "+categorieSelection);
             try {
                 ArticleVenduManager avm = new ArticleVenduManager();
-                if(request.getAttribute("articlename") != null) {
-                    System.out.println(request.getAttribute("articlename"));
+                if(articleName.equals("") && categorieSelection == 0) {
+                    request.setAttribute("listeArticlesVendus", avm.selectAll());
+                }else if (articleName.equals("")){
+                    request.setAttribute("listeArticlesVendus", avm.selectByCategorieId(categorieSelection));
+                } else if (!articleName.equals("") && categorieSelection != 0){
+                    request.setAttribute("listeArticlesVendus", avm.selectByName(articleName,categorieSelection));
                 }
-                request.setAttribute("listeArticlesVendus", avm.selectAll());
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else{try {
+            ArticleVenduManager avm = new ArticleVenduManager();
+            request.setAttribute("listeArticlesVendus", avm.selectAll());
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        }
+        if(request.getSession().getAttribute("connected")==null)
+            request.getSession().setAttribute("connected", false);
+
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/Accueil.jsp");
         rd.forward(request, response);
     }
