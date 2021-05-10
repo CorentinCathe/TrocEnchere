@@ -28,7 +28,7 @@ public class ArticleVenduManager {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.selectByName(name);
     }
-    public List<ArticleVenduBO>  selectByName(String name, int categorie) throws SQLException {
+    public List<ArticleVenduBO>  selectByNameAndCategorie(String name, int categorie) throws SQLException {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.selectByNameAndCategorie(name, categorie);
     }
