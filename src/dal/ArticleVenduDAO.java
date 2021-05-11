@@ -19,4 +19,13 @@ public interface ArticleVenduDAO {
 
     public List<ArticleVenduBO> selectByNameAndCategorie(String name, Integer idCategorie) throws SQLException;
 
+    public List<ArticleVenduBO> selectAtLeastOneBet(Integer idUser) throws SQLException;
+
+    public List<ArticleVenduBO> selectWon(Integer idUser) throws SQLException;
+
+    public List<ArticleVenduBO> selectAllSell(Integer idUser) throws SQLException;
+
+    public List<ArticleVenduBO> selectAllNotStartedSell(Integer idUser) throws SQLException;
+
+    public List<ArticleVenduBO> selectAllNotFinishedSell(Integer idUser) throws SQLException;
 }

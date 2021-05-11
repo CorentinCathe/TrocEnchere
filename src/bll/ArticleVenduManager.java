@@ -32,4 +32,25 @@ public class ArticleVenduManager {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.selectByNameAndCategorie(name, categorie);
     }
+    public List<ArticleVenduBO>  selectAtLeastOneBet(Integer idUser) throws SQLException {
+        ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
+        return aDAO.selectAtLeastOneBet(idUser);
+    }
+
+    public List<ArticleVenduBO>  selectWon(Integer idUser) throws SQLException {
+        ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
+        return aDAO.selectWon(idUser);
+    }
+    public List<ArticleVenduBO>  selectAllSell(Integer idUser) throws SQLException {
+        ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
+        return aDAO.selectAllSell(idUser);
+    }
+    public List<ArticleVenduBO>  selectAllNotStartedSell(Integer idUser) throws SQLException {
+        ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
+        return aDAO.selectAllNotStartedSell(idUser);
+    }
+    public List<ArticleVenduBO>  selectAllNotFinishedSell(Integer idUser) throws SQLException {
+        ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
+        return aDAO.selectAllNotFinishedSell(idUser);
+    }
 }
