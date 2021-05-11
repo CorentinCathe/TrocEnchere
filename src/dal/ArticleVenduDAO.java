@@ -28,4 +28,6 @@ public interface ArticleVenduDAO {
     public List<ArticleVenduBO> selectAllNotStartedSell(Integer idUser) throws SQLException;
 
     public List<ArticleVenduBO> selectAllNotFinishedSell(Integer idUser) throws SQLException;
+
+    public ArticleVenduBO insert(ArticleVenduBO article) throws SQLException;
 }

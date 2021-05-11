@@ -26,7 +26,7 @@
                         </form>
                     </li>
                     <li class="menu-btn">
-                        <form action="${pageContext.request.contextPath}/vendre" method="post">
+                        <form action="${pageContext.request.contextPath}/vendreArticle" method="get">
                             <button class="button-item" type="submit" value="Vendre article" name="vendre">Vendre article</button>
                         </form>
                     </li>

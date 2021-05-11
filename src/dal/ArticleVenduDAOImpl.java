@@ -21,7 +21,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     public static final String SELECT_ALL_SELL_ARTICLE = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ?";
     public static final String SELECT_SELL_ARTICLE_NOT_STARTED = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_debut_encheres<GETDATE()";
     public static final String SELECT_SELL_ARTICLE_NOT_FINISHED = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_fin_encheres>=GETDATE()";
-
+    public static final String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,?,?,?)";
+  
     @Override
     public List<ArticleVenduBO> selectAll() throws SQLException {
         List<ArticleVenduBO> listeArticlesVendus = new ArrayList<>();
@@ -460,5 +461,33 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
             e.printStackTrace();
         }
         return listeArticlesVendus;
+    }
+    public ArticleVenduBO insert(ArticleVenduBO article) throws SQLException {
+        try (Connection cnx = ConnectionProvider.getConnection();
+        ) {
+            int res;
+            PreparedStatement psmt = cnx.prepareStatement(INSERT_ARTICLE);
+            psmt.setString(1,article.getNom());
+            psmt.setString(2,article.getDescription());
+            psmt.setDate(3,article.getDateDebutEncheres());
+            psmt.setDate(4,article.getDateFinEncheres());
+            psmt.setInt(5,article.getPrixInitial());
+            psmt.setInt(6, article.getPrixVente());
+            psmt.setInt(7,article.getUtilisateur().getId());
+            psmt.setInt(8,article.getCategorie().getId());
+            psmt.execute();
+            try(ResultSet generatedKeys = psmt.getGeneratedKeys()){
+                if(generatedKeys.next()){
+                    res = generatedKeys.getInt(1);
+                    System.out.println(res);
+                    article.setId(res);
+                } else {
+                    throw new SQLException("SQL Problem");
+                }
+            }
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return article;
     }
 }
