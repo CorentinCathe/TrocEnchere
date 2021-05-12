@@ -64,8 +64,7 @@ public class VendreArticleServlet extends HttpServlet {
              RetraitBO retrait = new RetraitBO(article, rue, cp, ville);
              rm.insertRetrait(retrait);
 
-             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/Accueil.jsp");
-             rd.forward(request, response);
+             response.sendRedirect(request.getContextPath() + "/accueil");
              return;
         } catch (SQLException throwables) {
             System.out.println("Mise en vente impossible");
