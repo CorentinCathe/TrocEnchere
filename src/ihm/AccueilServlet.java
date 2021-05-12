@@ -2,7 +2,9 @@ package ihm;
 
 import bll.ArticleVenduManager;
 import bll.CategorieManager;
+import bll.EnchereManager;
 import bo.CategorieBO;
+import bo.EnchereBO;
 import dal.CategorieDAO;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +27,7 @@ public class AccueilServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         List<CategorieBO> listCat = new ArrayList<>();
         try {
             CategorieManager cm = new CategorieManager();

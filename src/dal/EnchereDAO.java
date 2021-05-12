@@ -10,4 +10,6 @@ public interface EnchereDAO {
     public List<EnchereBO> selectAllByUserId(int id);
     public EnchereBO selectOneById(int id);
     public EnchereBO insertEnchere(EnchereBO enchereBO);
+    public EnchereBO selectAllEncherInfo(int id);
+    public int selectLastMontantByIdArticle(int id);
 }

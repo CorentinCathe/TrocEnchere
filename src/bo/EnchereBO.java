@@ -19,6 +19,13 @@ public class EnchereBO {
         this.utilisateur = utilisateur;
     }
 
+    public EnchereBO(Date date, int montant, ArticleVenduBO article, UtilisateurBO utilisateur) {
+        this.date = date;
+        this.montant = montant;
+        this.article = article;
+        this.utilisateur = utilisateur;
+    }
+
     public int getId() {
         return id;
     }

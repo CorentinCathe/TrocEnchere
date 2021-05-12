@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-item">
                     <label for="password">Mot de passe :</label>
-                    <input type="password" placeholder="Mot de passe" id="password" name="password" required/>
+                    <input type="password" placeholder="Doit avoir au moins 1 Majuscule, 1 caractère spécial et 1 chiffre" id="password" name="password" required/>
                 </div>
                 <div class="form-item">
                     <label for="confirmPassword">Confirmer mot de passe :</label>

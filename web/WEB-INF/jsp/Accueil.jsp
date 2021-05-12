@@ -13,7 +13,7 @@
     <title>Accueil</title>
 </head>
 <body>
-    <%@ include file="/WEB-INF/fragments/header.jspf" %>
+<%@ include file="/WEB-INF/fragments/header.jspf" %>
 
 <section class="content">
     <div class="container">
@@ -21,12 +21,14 @@
         <div class="filter">
             <p>Filtres :</p>
             <form id="filter-form" action="${pageContext.request.contextPath}/accueil" method="get">
-                <input type="text" placeholder="Le nom de l'article" id="articlename" name="articlename" value=${articlename}>
+                <input type="text" placeholder="Le nom de l'article" id="articlename" name="articlename"
+                       value=${articlename}>
                 <label for="categorieList">Catégorie : </label>
                 <select name="categorieSelection" id="categorieList">
                     <option class="categorie" value="0" selected>Toutes</option>
                     <c:forEach items="${listCat}" var="cat">
-                        <option class="categorie" value=${cat.id} <c:if test="${ cat.id == categorieSelection }"> selected</c:if>>${cat.libelle}</option>
+                        <option class="categorie" value=${cat.id} <c:if
+                                test="${ cat.id == categorieSelection }"> selected</c:if>>${cat.libelle}</option>
                     </c:forEach>
                 </select>
             </form>
@@ -36,7 +38,10 @@
             <ul class="list-article">
                 <c:forEach items="${listeArticlesVendus}" var="article">
                     <li class="article">
-                         <div class="article-name"><c:if test= "${connected != null && connected}"><a href="DetailVente" target="_blank"></c:if><p>${article.nom}</p><c:if test= "${connected != null && connected}"></a></c:if></div>
+                        <div class="article-name">
+                            <c:if test="${connected != null && connected}">
+                                <a href="${pageContext.request.contextPath}/enchere?articleId=${article.id}" target="_blank"></c:if><p>${article.nom}</p><c:if test="${connected != null && connected}"></a></c:if>
+                        </div>
                         <div class="article-price"><p>Prix : ${article.prixVente} points</p></div>
                         <div class="article-date-fin"><p>Fin des enchères : ${article.dateFinEncheres}</p></div>
                         <div class="vendeur"><p>Vendeur : ${article.utilisateur.pseudo}</p></div>
