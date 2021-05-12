@@ -35,7 +35,7 @@
                 <c:if test= "${connected != null && connected}">
                     <div>
                         <div>
-                            <input type="radio" value="achat" name="radio" id="radioAchat" onclick="disableButton()" <c:if test="${ radio == \"achat\" }"> checked</c:if>>
+                            <input type="radio" value="achat" name="radio" id="radioAchat" onclick="disableButton()"  <c:if test="${ radio == \"achat\" }"> checked</c:if>>
                             <label for="radioAchat">Achat</label>
                             <input type="checkbox" class="check1" value="ouverte" name="checkAchatOuverte" id="checkAchatOuverte" <c:if test="${ checkAchatOuverte != null }"> checked</c:if>>
                             <label for="checkAchatOuverte">enchères ouvertes</label>
@@ -44,8 +44,9 @@
                             <input type="checkbox" class="check1" value="mesEncheresWin" name="checkAchatWin" id="checkAchatWin" <c:if test="${ checkAchatWin != null }"> checked</c:if>>
                             <label for="checkAchatWin">mes enchères remportées</label>
                         </div>
+
                         <div>
-                            <input type="radio" value="vente" name="radio" id="radioVente" onclick="disableButton()" <c:if test="${ radio == \"vente\" }"> checked</c:if>>
+                            <input type="radio" value="vente" name="radio" id="radioVente" onclick="disableButton()"  <c:if test="${ radio == \"vente\" }"> checked</c:if>>
                             <label for="radioVente">Vente</label>
                             <input type="checkbox" class="check2" value="enCours" name="checkVenteEnCours" id="checkVenteEnCours" <c:if test="${ checkVenteEnCours != null }"> checked</c:if>>
                             <label for="checkVenteEnCours">mes ventes en cours</label>
@@ -63,7 +64,7 @@
             <ul class="list-article">
                 <c:forEach items="${listeArticlesVendus}" var="article">
                     <li class="article">
-                        <div class="article-name"><c:if test= "${connected != null && connected}"><a <c:if test="${ article.dateDebutEncheres > localDate}"> href="modifierVente"</c:if> <c:if test="${ article.dateDebutEncheres <= localDate}"> href="DetailVente"</c:if> target="_blank"></c:if><p>${article.nom}</p><c:if test= "${connected != null && connected}"></a></c:if></div>
+                        <div class="article-name"><c:if test= "${connected != null && connected}"><a <c:if test="${ article.dateDebutEncheres > localDate}"> href="modifierVente?articleId=${article.id}"</c:if> <c:if test="${ article.dateDebutEncheres <= localDate}"> href="DetailVente"</c:if>></c:if><p>${article.nom}</p><c:if test= "${connected != null && connected}"></a></c:if></div>
                         <div class="article-price"><p>Prix : ${article.prixVente} points</p></div>
                         <div class="article-date-fin"><p>Fin des enchères : ${article.dateFinEncheres}</p></div>
                         <div class="vendeur"><p>Vendeur : ${article.utilisateur.pseudo}</p></div>

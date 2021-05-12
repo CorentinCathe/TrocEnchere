@@ -22,7 +22,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     public static final String SELECT_SELL_ARTICLE_NOT_STARTED = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_debut_encheres>GETDATE()";
     public static final String SELECT_SELL_ARTICLE_FINISHED = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_fin_encheres<GETDATE()";
     public static final String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,?,?,?)";
-  
+    public static final String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET nom = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, id_categorie = ? WHERE id = ?";
+
     @Override
     public List<ArticleVenduBO> selectAll() throws SQLException {
         List<ArticleVenduBO> listeArticlesVendus = new ArrayList<>();
@@ -462,6 +463,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
         }
         return listeArticlesVendus;
     }
+
     public ArticleVenduBO insert(ArticleVenduBO article) throws SQLException {
         try (Connection cnx = ConnectionProvider.getConnection();
         ) {
@@ -490,4 +492,28 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
         }
         return article;
     }
+
+    @Override
+    public boolean update(ArticleVenduBO article) throws SQLException {
+        boolean res = false;
+        try (Connection cnx = ConnectionProvider.getConnection();
+        ) {
+            System.out.println("on est dans le update impl");
+            PreparedStatement psmt = cnx.prepareStatement(UPDATE_ARTICLE);
+            psmt.setString(1,article.getNom());
+            psmt.setString(2,article.getDescription());
+            psmt.setDate(3,article.getDateDebutEncheres());
+            psmt.setDate(4,article.getDateFinEncheres());
+            psmt.setInt(5,article.getPrixInitial());
+            psmt.setInt(6,article.getCategorie().getId());
+            psmt.setInt(7,article.getId());
+            res = psmt.execute();
+        }catch (Exception e) {
+            System.out.println("C'est l'exception");
+            System.out.println(e.getMessage());
+        }
+        return !res;
+    }
+
+
 }
