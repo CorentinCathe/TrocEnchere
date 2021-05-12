@@ -50,9 +50,10 @@ public class ArticleVenduManager {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.selectAllNotStartedSell(idUser);
     }
-    public List<ArticleVenduBO>  selectAllNotFinishedSell(Integer idUser) throws SQLException {
+    public List<ArticleVenduBO>  selectAllFinishedSell(Integer idUser) throws SQLException {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
-        return aDAO.selectAllNotFinishedSell(idUser);
+        return aDAO.selectAllFinishedSell(idUser);
+    }
       
     public ArticleVenduBO insertArticle(ArticleVenduBO article) throws SQLException {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();

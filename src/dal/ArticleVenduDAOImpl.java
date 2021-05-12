@@ -18,9 +18,9 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     public static final String SELECT_BY_ARTICLE_ID = "SELECT * FROM ARTICLES_VENDUS a WHERE a.id = ?";
     public static final String SELECT_ARTICLES_AT_LEAST_ONE_BET = "SELECT DISTINCT a.*,e.id_article,e.id_utilisateur FROM ARTICLES_VENDUS a, ENCHERES e WHERE date_fin_encheres>=GETDATE() and e.id_article = a.id and e.id_utilisateur = ?";
     public static final String SELECT_ARTICLES_WON = "SELECT DISTINCT a.*,e.id_article,e.id_utilisateur FROM ARTICLES_VENDUS a, ENCHERES e WHERE e.id_utilisateur = ? and a.date_fin_encheres<GETDATE() and e.montant = (SELECT MAX(e2.montant) FROM ENCHERES e2 WHERE e2.id_article = e.id_article) and e.id_article = a.id";
-    public static final String SELECT_ALL_SELL_ARTICLE = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ?";
-    public static final String SELECT_SELL_ARTICLE_NOT_STARTED = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_debut_encheres<GETDATE()";
-    public static final String SELECT_SELL_ARTICLE_NOT_FINISHED = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_fin_encheres>=GETDATE()";
+    public static final String SELECT_ALL_SELL_ARTICLE = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_debut_encheres<=GETDATE() and date_fin_encheres>=GETDATE()";
+    public static final String SELECT_SELL_ARTICLE_NOT_STARTED = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_debut_encheres>GETDATE()";
+    public static final String SELECT_SELL_ARTICLE_FINISHED = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_fin_encheres<GETDATE()";
     public static final String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,?,?,?)";
   
     @Override
@@ -424,11 +424,11 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     }
 
     @Override
-    public List<ArticleVenduBO> selectAllNotFinishedSell(Integer idUser) throws SQLException {
+    public List<ArticleVenduBO> selectAllFinishedSell(Integer idUser) throws SQLException {
         List<ArticleVenduBO> listeArticlesVendus = new ArrayList<>();
 
         try(Connection cnx = ConnectionProvider.getConnection();){
-            PreparedStatement psmt = cnx.prepareStatement(SELECT_SELL_ARTICLE_NOT_FINISHED);
+            PreparedStatement psmt = cnx.prepareStatement(SELECT_SELL_ARTICLE_FINISHED);
             psmt.setInt(1,idUser);
             boolean isResultSet = psmt.execute();
             if(isResultSet) {

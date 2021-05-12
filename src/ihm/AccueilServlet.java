@@ -16,8 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @WebServlet("/accueil")
 public class AccueilServlet extends HttpServlet {
@@ -96,13 +99,14 @@ public class AccueilServlet extends HttpServlet {
                     if (mesVentesNotStarted != null)
                         listArticle = Utils.ajouteSiExistePas(listArticle, avm.selectAllNotStartedSell(((UtilisateurBO) request.getSession().getAttribute("user")).getId()));
                     if (mesVentesFinish != null)
-                        listArticle = Utils.ajouteSiExistePas(listArticle, avm.selectAllNotFinishedSell(((UtilisateurBO) request.getSession().getAttribute("user")).getId()));
+                        listArticle = Utils.ajouteSiExistePas(listArticle, avm.selectAllFinishedSell(((UtilisateurBO) request.getSession().getAttribute("user")).getId()));
                 }
             }catch (Exception e) {
                 e.printStackTrace();
             }
             request.setAttribute("listeArticlesVendus", listArticle);
-
+            Date localDate = Date.valueOf(LocalDate.now());
+            request.setAttribute("localDate", localDate);
         }
 
 
