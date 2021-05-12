@@ -30,4 +30,6 @@ public interface ArticleVenduDAO {
     public List<ArticleVenduBO> selectAllFinishedSell(Integer idUser) throws SQLException;
 
     public ArticleVenduBO insert(ArticleVenduBO article) throws SQLException;
+
+    public boolean update(ArticleVenduBO article) throws SQLException;
 }

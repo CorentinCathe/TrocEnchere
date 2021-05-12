@@ -1,10 +1,13 @@
 package bll;
 
 import bo.ArticleVenduBO;
+import dal.ArticleVenduDAO;
 import dal.ArticleVenduDAOImpl;
 import dal.DAOFactory;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ArticleVenduManager {
@@ -17,6 +20,11 @@ public class ArticleVenduManager {
     public List<ArticleVenduBO> selectByUtilisateurId(int id) throws SQLException {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.selectByUtilisateurId(id);
+    }
+
+    public ArticleVenduBO selectArticleById(int id) throws SQLException {
+        ArticleVenduDAO aDAO = DAOFactory.getArticleVenduDAO();
+        return aDAO.selectArticleById(id);
     }
 
     public List<ArticleVenduBO>  selectByCategorieId(int id) throws SQLException {
@@ -58,5 +66,10 @@ public class ArticleVenduManager {
     public ArticleVenduBO insertArticle(ArticleVenduBO article) throws SQLException {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.insert(article);
+    }
+
+    public boolean updateArticle(ArticleVenduBO article) throws SQLException {
+        ArticleVenduDAO aDAO = DAOFactory.getArticleVenduDAO();
+        return aDAO.update(article);
     }
 }
