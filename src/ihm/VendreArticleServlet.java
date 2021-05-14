@@ -54,22 +54,21 @@ public class VendreArticleServlet extends HttpServlet {
              article.setCategorie(cm.selectById(categorieId));
              article.setUtilisateur(user);
              article = avm.insertArticle(article);
-             System.out.println(dateDebut);
-             System.out.println(prixInitial);
-             System.out.println(article.toString());
-             System.out.println(user.toString());
+
              EnchereBO enchere = new EnchereBO(Date.valueOf(LocalDate.now()),article.getPrixInitial(),article,article.getUtilisateur());
              em.insertEnchere(enchere);
+
              String rue = request.getParameter("rue");
              String cp = request.getParameter("cp");
              String ville = request.getParameter("ville");
              RetraitBO retrait = new RetraitBO(article, rue, cp, ville);
              rm.insertRetrait(retrait);
 
-
-
              RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/Accueil.jsp");
              rd.forward(request, response);
+
+             response.sendRedirect(request.getContextPath() + "/accueil");
+
              return;
         } catch (SQLException throwables) {
             System.out.println("Mise en vente impossible");

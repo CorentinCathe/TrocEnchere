@@ -12,8 +12,6 @@
         <% Boolean resultIsConnected = (Boolean) request.getSession().getAttribute("connected");%>
         <c:choose>
             <c:when test= "${connected != null && connected}" >
-<%--   A remplacer par ${user} <% Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("user"); %>--%>
-
                 <ul class="menu">
                     <li class="menu-btn">
                         <form action="${pageContext.request.contextPath}/enchereBO" method="post">
@@ -47,7 +45,7 @@
                         </form>
                     </li>
                     <li class="menu-btn">
-                        <form action="${pageContext.request.contextPath}/login" method="post">
+                        <form action="${pageContext.request.contextPath}/login" method="get">
                             <button class="button-item" type="submit" value="Se connecter">Se connecter</button>
                         </form>
                     </li>

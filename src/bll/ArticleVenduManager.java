@@ -64,7 +64,6 @@ public class ArticleVenduManager {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.selectAllFinishedSell(idUser);
     }
-
     public ArticleVenduBO insertArticle(ArticleVenduBO article) throws SQLException {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.insert(article);

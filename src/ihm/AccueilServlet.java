@@ -5,7 +5,11 @@ import bll.CategorieManager;
 import bll.EnchereManager;
 import bo.CategorieBO;
 import bo.EnchereBO;
+import bo.ArticleVenduBO;
+import bo.CategorieBO;
+import bo.UtilisateurBO;
 import dal.CategorieDAO;
+import utils.Utils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,8 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @WebServlet("/accueil")
 public class AccueilServlet extends HttpServlet {
@@ -28,54 +35,90 @@ public class AccueilServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
         List<CategorieBO> listCat = new ArrayList<>();
-        try {
-            CategorieManager cm = new CategorieManager();
-            listCat = cm.selectAll();
-            request.setAttribute("listCat",listCat);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        request.setAttribute("articlename",request.getParameter("articlename"));
-        request.setAttribute("categorieSelection",request.getParameter("categorieSelection"));
-        Boolean isOnPageInscription = false;
-        request.setAttribute("isOnPageInscription",isOnPageInscription);
-        //System.out.println("Connected : "+request.getSession().getAttribute("user")!=null);
-        if (request.getParameter("articlename") != null && request.getParameter("categorieSelection") != null){
-            System.out.println("param" + request.getParameter("articlename"));
-            System.out.println("param" + request.getParameter("categorieSelection"));
-            String articleName = request.getParameter("articlename");
-            int categorieSelection = Integer.valueOf(request.getParameter("categorieSelection"));
-            System.out.println("article name : "+articleName);
-            System.out.println("categorie name : "+categorieSelection);
-            try {
-                ArticleVenduManager avm = new ArticleVenduManager();
-                System.out.println("CONDITIONS DE REQUETES article name : "+articleName + " categorie name : "+categorieSelection);
-                if(articleName.equals("") && categorieSelection == 0) {
-                    System.out.println("APPEL SELECT ALL");
-                    request.setAttribute("listeArticlesVendus", avm.selectAll());
-                }else if (articleName.equals("")){
-                    System.out.println("APPEL SELECT CAT");
-                    request.setAttribute("listeArticlesVendus", avm.selectByCategorieId(categorieSelection));
-                } else if (!articleName.equals("") && categorieSelection != 0){
-                    System.out.println("APPEL SELECT NAME CAT");
-                    request.setAttribute("listeArticlesVendus", avm.selectByNameAndCategorie(articleName,categorieSelection));
-                } else if (!articleName.equals("") && categorieSelection == 0){
-                    System.out.println("APPEL SELECT NAME");
-                    request.setAttribute("listeArticlesVendus", avm.selectByName(articleName));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }else{try {
-            ArticleVenduManager avm = new ArticleVenduManager();
-            request.setAttribute("listeArticlesVendus", avm.selectAll());
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        }
+
         if(request.getSession().getAttribute("connected")==null)
             request.getSession().setAttribute("connected", false);
+        Boolean isOnPageInscription = false;
+
+        request.setAttribute("isOnPageInscription",isOnPageInscription);
+        request.setAttribute("articlename",request.getParameter("articlename"));
+        request.setAttribute("categorieSelection",request.getParameter("categorieSelection"));
+        request.setAttribute("radio",request.getParameter("radio"));
+        request.setAttribute("checkAchatOuverte",request.getParameter("checkAchatOuverte"));
+        request.setAttribute("checkAchatmesEncheres",request.getParameter("checkAchatmesEncheres"));
+        request.setAttribute("checkAchatWin",request.getParameter("checkAchatWin"));
+        request.setAttribute("checkVenteEnCours",request.getParameter("checkVenteEnCours"));
+        request.setAttribute("checkVenteNotStarted",request.getParameter("checkVenteNotStarted"));
+        request.setAttribute("checkVenteFinish",request.getParameter("checkVenteFinish"));
+
+        try {
+            CategorieManager cm = new CategorieManager();
+            request.setAttribute("listCat",cm.selectAll());
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (request.getSession().getAttribute("user")==null) {
+                System.out.println("param" + request.getParameter("articlename"));
+                System.out.println("param" + request.getParameter("categorieSelection"));
+                String articleName = request.getParameter("articlename");
+                Integer categorieSelection;
+                if (request.getParameter("categorieSelection")!=null)
+                    categorieSelection = Integer.valueOf(request.getParameter("categorieSelection"));
+                else
+                    categorieSelection = null;
+                System.out.println("article name : " + articleName);
+                System.out.println("categorie name : " + categorieSelection);
+                request.setAttribute("listeArticlesVendus", this.encheresOuvertes(null, articleName,categorieSelection));
+        }else{
+            String selecteur = "";
+            String ouverte = "";
+            if (request.getParameter("radio")==null){
+                selecteur = "achat";
+                ouverte = "ouverte";
+                request.setAttribute("radio","achat");
+                request.setAttribute("checkAchatOuverte","ouverte");
+            }else{
+                selecteur = request.getParameter("radio");
+                ouverte = request.getParameter("checkAchatOuverte");
+            }
+            Integer categorieSelection = null;
+            if (request.getParameter("categorieSelection") != null)
+                categorieSelection = Integer.parseInt(request.getParameter("categorieSelection"));
+            String articleName = request.getParameter("articlename");
+            String mesEncheres = request.getParameter("checkAchatmesEncheres");
+            String mesWin = request.getParameter("checkAchatWin");
+            String ventesEnCours = request.getParameter("checkVenteEnCours");
+            String mesVentesNotStarted = request.getParameter("checkVenteNotStarted");
+            String mesVentesFinish = request.getParameter("checkVenteFinish");
+            List<ArticleVenduBO> listArticle = new ArrayList<>();
+            ArticleVenduManager avm = new ArticleVenduManager();
+            try {
+                if (selecteur.equals("achat")) {
+                    if (ouverte != null)
+                        this.encheresOuvertes(listArticle, articleName, categorieSelection);
+                    if (mesEncheres != null)
+                        listArticle = Utils.ajouteSiExistePas(listArticle, avm.selectAtLeastOneBet(((UtilisateurBO) request.getSession().getAttribute("user")).getId()));
+                    if (mesWin != null)
+                        listArticle = Utils.ajouteSiExistePas(listArticle, avm.selectWon(((UtilisateurBO) request.getSession().getAttribute("user")).getId()));
+                } else {
+                    if (ventesEnCours != null)
+                        listArticle = Utils.ajouteSiExistePas(listArticle, avm.selectAllSell(((UtilisateurBO) request.getSession().getAttribute("user")).getId()));
+                    if (mesVentesNotStarted != null)
+                        listArticle = Utils.ajouteSiExistePas(listArticle, avm.selectAllNotStartedSell(((UtilisateurBO) request.getSession().getAttribute("user")).getId()));
+                    if (mesVentesFinish != null)
+                        listArticle = Utils.ajouteSiExistePas(listArticle, avm.selectAllFinishedSell(((UtilisateurBO) request.getSession().getAttribute("user")).getId()));
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            request.setAttribute("listeArticlesVendus", listArticle);
+            Date localDate = Date.valueOf(LocalDate.now());
+            request.setAttribute("localDate", localDate);
+        }
+
+
 
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/Accueil.jsp");
         rd.forward(request, response);
@@ -87,8 +130,7 @@ public class AccueilServlet extends HttpServlet {
         if(request.getParameter("disconnect")!=null){
             request.getSession().setAttribute("user",null);
             request.getSession().setAttribute("connected",false);
-            RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/Accueil.jsp");
-            rd.forward(request, response);
+            this.doGet(request,response);
             return;
         }
         if (request.getParameter("profil")!= null) {
@@ -98,5 +140,40 @@ public class AccueilServlet extends HttpServlet {
         }
 
     }
+
+    private List<ArticleVenduBO> encheresOuvertes(List<ArticleVenduBO> list, String articleName, Integer categorieSelection){
+        if (list==null)
+            list = new ArrayList<>();
+        if (articleName != null && categorieSelection != null) {
+            try {
+                ArticleVenduManager avm = new ArticleVenduManager();
+                System.out.println("CONDITIONS DE REQUETES article name : " + articleName + " categorie name : " + categorieSelection);
+                if (articleName.equals("") && categorieSelection == 0) {
+                    System.out.println("APPEL SELECT ALL");
+                    list.addAll(avm.selectAll());
+                } else if (articleName.equals("")) {
+                    System.out.println("APPEL SELECT CAT");
+                    list.addAll(avm.selectByCategorieId(categorieSelection));
+                } else if (!articleName.equals("") && categorieSelection != 0) {
+                    System.out.println("APPEL SELECT NAME CAT");
+                    list.addAll(avm.selectByNameAndCategorie(articleName, categorieSelection));
+                } else if (!articleName.equals("") && categorieSelection == 0) {
+                    System.out.println("APPEL SELECT NAME");
+                    list.addAll(avm.selectByName(articleName));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                ArticleVenduManager avm = new ArticleVenduManager();
+                list.addAll(avm.selectAll());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
 
 }
