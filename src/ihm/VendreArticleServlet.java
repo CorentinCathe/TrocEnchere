@@ -56,7 +56,7 @@ public class VendreArticleServlet extends HttpServlet {
              ArticleVenduBO article = new ArticleVenduBO(0, nomArticle, desc,dateDebut, dateFin , prixInitial,prixInitial);
              article.setCategorie(cm.selectById(categorieId));
              article.setUtilisateur(user);
-             avm.insertArticle(article);
+             article = avm.insertArticle(article);
 
              String rue = request.getParameter("rue");
              String cp = request.getParameter("cp");

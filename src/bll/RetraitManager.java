@@ -18,4 +18,9 @@ public class RetraitManager {
         return rDAO.selectByArticleId(id);
     }
 
+    public boolean update(RetraitBO retrait) throws SQLException {
+        RetraitDAO rDAO = DAOFactory.getRetraitDAO();
+        return rDAO.update(retrait);
+    }
+
 }

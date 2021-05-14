@@ -468,7 +468,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
         try (Connection cnx = ConnectionProvider.getConnection();
         ) {
             int res;
-            PreparedStatement psmt = cnx.prepareStatement(INSERT_ARTICLE);
+            PreparedStatement psmt = cnx.prepareStatement(INSERT_ARTICLE, Statement.RETURN_GENERATED_KEYS);
             psmt.setString(1,article.getNom());
             psmt.setString(2,article.getDescription());
             psmt.setDate(3,article.getDateDebutEncheres());

@@ -59,11 +59,11 @@ public class ModifierVenteServlet extends HttpServlet {
                 article.setUtilisateur(user);
                 avm.updateArticle(article);
 
-//            String rue = request.getParameter("rue");
-//            String cp = request.getParameter("cp");
-//            String ville = request.getParameter("ville");
-//            RetraitBO retrait = new RetraitBO(article, rue, cp, ville);
-//            rm.insertRetrait(retrait);
+                String rue = request.getParameter("rue");
+                String cp = request.getParameter("cp");
+                String ville = request.getParameter("ville");
+                RetraitBO retrait = new RetraitBO(article, rue, cp, ville);
+                rm.update(retrait);
                 response.sendRedirect(request.getContextPath() + "/accueil");
                 return;
             } catch (SQLException throwables) {
