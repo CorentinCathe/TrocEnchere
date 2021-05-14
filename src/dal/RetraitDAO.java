@@ -10,4 +10,6 @@ public interface RetraitDAO {
     public RetraitBO insertRetrait(RetraitBO retrait) throws SQLException;
 
     public RetraitBO selectByArticleId(Integer articleId) throws SQLException;
+
+    public boolean update(RetraitBO retrait) throws SQLException;
 }

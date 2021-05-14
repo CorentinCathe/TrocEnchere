@@ -2,6 +2,9 @@ package ihm;
 
 import bll.ArticleVenduManager;
 import bll.CategorieManager;
+import bll.EnchereManager;
+import bo.CategorieBO;
+import bo.EnchereBO;
 import bo.ArticleVenduBO;
 import bo.CategorieBO;
 import bo.UtilisateurBO;
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,6 +34,10 @@ public class AccueilServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        List<CategorieBO> listCat = new ArrayList<>();
+
         if(request.getSession().getAttribute("connected")==null)
             request.getSession().setAttribute("connected", false);
         Boolean isOnPageInscription = false;
@@ -44,6 +52,7 @@ public class AccueilServlet extends HttpServlet {
         request.setAttribute("checkVenteEnCours",request.getParameter("checkVenteEnCours"));
         request.setAttribute("checkVenteNotStarted",request.getParameter("checkVenteNotStarted"));
         request.setAttribute("checkVenteFinish",request.getParameter("checkVenteFinish"));
+
         try {
             CategorieManager cm = new CategorieManager();
             request.setAttribute("listCat",cm.selectAll());

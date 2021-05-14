@@ -32,7 +32,19 @@ public class EnchereManager {
 
     public EnchereBO insertEnchere(EnchereBO enchereBO) throws SQLException {
         EnchereDAOImpl eDAO = DAOFactory.getEnchereDAO();
-        return eDAO.insertEnchere(enchereBO);
+        if(selectLastMontantByIdArticle(enchereBO.getArticle().getId())< enchereBO.getMontant()){
+            return eDAO.insertEnchere(enchereBO);
+        }
+        return null;
     }
 
+    public EnchereBO selectAllEncherInfo(int id) throws SQLException {
+        EnchereDAOImpl eDAO = DAOFactory.getEnchereDAO();
+        return eDAO.selectAllEncherInfo(id);
+    }
+
+    public int selectLastMontantByIdArticle(int id) throws SQLException {
+        EnchereDAOImpl eDAO = DAOFactory.getEnchereDAO();
+        return eDAO.selectLastMontantByIdArticle(id);
+    }
 }

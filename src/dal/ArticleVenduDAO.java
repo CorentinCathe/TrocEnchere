@@ -33,3 +33,4 @@ public interface ArticleVenduDAO {
 
     public boolean update(ArticleVenduBO article) throws SQLException;
 }
+
