@@ -13,6 +13,7 @@
 <html>
 <head>
     <title>Accueil</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/Accueil.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/fragments/header.jspf" %>
