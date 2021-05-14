@@ -10,8 +10,10 @@
 <html>
 <head>
     <title>Vendre article</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/VendreArticle.css">
 </head>
 <body>
+<%@ include file="/WEB-INF/fragments/header.jspf" %>
 <section class="content">
   <div class="container">
     <h1 class="title">Nouvelle vente</h1>
@@ -33,24 +35,24 @@
             </c:forEach>
           </select>
         </div>
-        <div class="form-item">
-          <label for="photo">Photo de l'article </label>
-          <input type="button" name="upload" id="photo" value="upload">
-        </div>
+<%--        <div class="form-item">--%>
+<%--          <label for="photo">Photo de l'article </label>--%>
+<%--          <button type="submit" name="upload" id="photo" value="upload">upload</button>--%>
+<%--        </div>--%>
         <div class="form-item">
           <label for="initialPrice">Mise à prix : </label>
           <input type="number" name="initialPrice" id="initialPrice" placeholder="100" required>
         </div>
         <div class="form-item">
           <label for="debutEnchere">Début de l'enchère : </label>
-          <input type="date" name="debutEnchere" id="debutEnchere" required>
+          <input type="date" name="debutEnchere" id="debutEnchere"  required>
         </div>
         <div class="form-item">
           <label for="finEnchere">Fin de l'enchère : </label>
           <input type="date" name="finEnchere" id="finEnchere" required>
         </div>
         <div class="retrait">
-          <p>Retrait</p>
+          <h2>Retrait</h2>
           <div class="form-item">
             <label for="rue">Rue : </label>
             <input type="text" name="rue" id="rue" value="${user.rue}">
@@ -66,13 +68,15 @@
         </div>
       </form>
       <form id="cancel" action="${pageContext.request.contextPath}/accueil" method="get"></form>
-      <div class="buttonGroupe">
-        <button form="insert-form" type="submit" title="register" value="register">Enregistrer</button>
-        <button form="cancel" type="submit" title="cancel" value="cancel">Annuler</button>
-      </div>
+    </div>
+    <div class="buttonGroupe">
+      <button form="insert-form" type="submit" title="register" value="register">Enregistrer</button>
+      <button form="cancel" type="submit" title="cancel" value="cancel">Annuler</button>
     </div>
   </div>
-
+  <div class="illu">
+    <%@include file="assets/illuVendreArticle.svg" %>
+  </div>
 </section>
 
 </body>
