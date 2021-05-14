@@ -1,9 +1,11 @@
 package bll;
 
 import bo.ArticleVenduBO;
+import bo.EnchereBO;
 import dal.ArticleVenduDAO;
 import dal.ArticleVenduDAOImpl;
 import dal.DAOFactory;
+import dal.EnchereDAOImpl;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -62,14 +64,13 @@ public class ArticleVenduManager {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.selectAllFinishedSell(idUser);
     }
-      
     public ArticleVenduBO insertArticle(ArticleVenduBO article) throws SQLException {
         ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.insert(article);
     }
 
     public boolean updateArticle(ArticleVenduBO article) throws SQLException {
-        ArticleVenduDAO aDAO = DAOFactory.getArticleVenduDAO();
+        ArticleVenduDAOImpl aDAO = DAOFactory.getArticleVenduDAO();
         return aDAO.update(article);
     }
 }
