@@ -1,0 +1,100 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+.container{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    color: #6c0277;
+    background: linear-gradient(to left, #d9b1da, #e8d6e8);
+    height: 95vh;
+    justify-content: center;
+}
+
+.title{
+    font-size: 2vw;
+    text-align: center;
+    width: 100%;
+}
+.new-sale {
+    z-index: 1;
+    background: #FFFFFF;
+    width: 50%;
+    margin: 0px auto 3vh;
+    padding: 45px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#insert-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+}
+
+.new-sale input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 70%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.new-sale select {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 70%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.buttonGroupe{
+    display: flex;
+    width: 61%;
+    margin: 1%;
+    justify-content: space-around;
+}
+
+button {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #863a8d;
+    width: 42%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+button:hover,.form button:active,.form button:focus {
+    background: #6c0277;
+}
+
+.illu{
+    position: absolute;
+    top: 30%;
+    left: 80%;
+}
