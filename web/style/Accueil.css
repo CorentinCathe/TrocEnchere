@@ -1,0 +1,139 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to left, #d0afd1, #e8d6e8);
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 95%;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.page-content{
+    width: 70%;
+    height: 100%;
+}
+
+.title{
+    margin: 5% 5% 3%;
+    font-size: 3vw;
+}
+
+.filter{
+    display: flex;
+    flex-direction: column;
+}
+#filter-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.check-choice{
+    display: flex;
+    width: 50%;
+    height: 8vh;
+    justify-content: space-around;
+}
+
+.check-subchoice{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.check-item{
+    display: flex;
+    align-items: center;
+}
+
+#articlename {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 40vw;
+    border: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.search-button{
+    margin-top: 3% ;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #863a8d;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.search-button:hover{
+    background: #6c0277;
+}
+
+select {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 70%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.articles-card{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.article{
+    padding: 45px;
+    width: 12vw;
+    list-style: none;
+    margin:3%;
+    z-index: 1;
+    background: #FFFFFF;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+}
+.article a {
+    color: #6c0277;
+    transition: 0.5s;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+}
+
+.article a:hover {
+    color: #d0afd1;
+}
+
+.illu{
+    position: absolute;
+    z-index: 0;
+    top: 45%;
+    right: 70%;
+}
+
+
+.radio-label{
+    font-size: 15pt;
+}

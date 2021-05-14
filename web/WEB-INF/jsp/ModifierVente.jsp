@@ -10,8 +10,12 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/VendreArticle.css">
 </head>
 <body>
+
+<%@ include file="/WEB-INF/fragments/header.jspf" %>
+
 <section class="content">
     <div class="container">
         <h1 class="title">Modifier la vente</h1>
@@ -67,10 +71,10 @@
                 </div>
             </form>
             <form id="cancel" action="${pageContext.request.contextPath}/accueil" method="get"></form>
-            <div class="buttonGroupe">
-                <button form="update-form" type="submit" title="update" value="update">Modifier</button>
-                <button form="cancel" type="submit" title="cancel" value="cancel">Annuler</button>
-            </div>
+        </div>
+        <div class="buttonGroupe">
+            <button form="update-form" type="submit" title="update" value="update">Modifier</button>
+            <button form="cancel" type="submit" title="cancel" value="cancel">Annuler</button>
         </div>
     </div>
 
