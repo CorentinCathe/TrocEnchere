@@ -66,7 +66,7 @@
             <ul class="list-article">
                 <c:forEach items="${listeArticlesVendus}" var="article">
                     <li class="article">
-                        <div class="article-name"><c:if test= "${connected != null && connected}"><a <c:if test="${ article.dateDebutEncheres > localDate}"> href="modifierVente?articleId=${article.id}"</c:if> <c:if test="${ article.dateDebutEncheres <= localDate}"> href="DetailVente"</c:if>></c:if><p>${article.nom}</p><c:if test= "${connected != null && connected}"></a></c:if></div>
+                        <div class="article-name"><c:if test= "${connected != null && connected}"><a <c:if test="${ article.dateDebutEncheres > localDate}"> href="modifierVente?articleId=${article.id}"</c:if> <c:if test="${ article.dateDebutEncheres <= localDate}"> href="enchere?articleId=${article.id}"</c:if>></c:if><p>${article.nom}</p><c:if test= "${connected != null && connected}"></a></c:if></div>
                         <div class="article-price"><p>Prix : ${article.prixVente} points</p></div>
                         <div class="article-date-fin"><p>Fin des enchères : ${article.dateFinEncheres}</p></div>
                         <div class="vendeur"><p>Vendeur : ${article.utilisateur.pseudo}</p></div>

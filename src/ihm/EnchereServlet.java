@@ -53,7 +53,8 @@ public class EnchereServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int offre = Integer.parseInt(req.getParameter("offre"));
         ArticleVenduManager am = new ArticleVenduManager();
-        if (enchere.getMontant() < offre && enchere.getDate().after(enchere.getArticle().getDateFinEncheres())){
+        System.out.println();
+        if (enchere.getMontant() < offre && enchere.getDate().before(enchere.getArticle().getDateFinEncheres())){
             try {
                 long now = System.currentTimeMillis();
                 Date date = new Date(now);
