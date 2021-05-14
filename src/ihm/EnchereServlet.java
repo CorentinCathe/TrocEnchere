@@ -1,7 +1,9 @@
 package ihm;
 
+import bll.ArticleVenduManager;
 import bll.EnchereManager;
 import bll.RetraitManager;
+import bo.ArticleVenduBO;
 import bo.EnchereBO;
 import bo.RetraitBO;
 
@@ -50,12 +52,17 @@ public class EnchereServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int offre = Integer.parseInt(req.getParameter("offre"));
+        ArticleVenduManager am = new ArticleVenduManager();
         if (enchere.getMontant() < offre && enchere.getDate().after(enchere.getArticle().getDateFinEncheres())){
             try {
                 long now = System.currentTimeMillis();
                 Date date = new Date(now);
                 enchere = new EnchereBO(date,offre,enchere.getArticle(), enchere.getUtilisateur());
                 em.insertEnchere(enchere);
+                ArticleVenduBO article = enchere.getArticle();
+                article.setPrixVente(enchere.getMontant());
+                am.updateArticle(article);
+                enchere.setArticle(article);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

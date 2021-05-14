@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,12 +53,12 @@ public class VendreArticleServlet extends HttpServlet {
              ArticleVenduBO article = new ArticleVenduBO(0, nomArticle, desc,dateDebut, dateFin , prixInitial,prixInitial);
              article.setCategorie(cm.selectById(categorieId));
              article.setUtilisateur(user);
-             avm.insertArticle(article);
+             article = avm.insertArticle(article);
              System.out.println(dateDebut);
              System.out.println(prixInitial);
              System.out.println(article.toString());
              System.out.println(user.toString());
-             EnchereBO enchere = new EnchereBO(dateDebut,prixInitial,article,user);
+             EnchereBO enchere = new EnchereBO(Date.valueOf(LocalDate.now()),article.getPrixInitial(),article,article.getUtilisateur());
              em.insertEnchere(enchere);
              String rue = request.getParameter("rue");
              String cp = request.getParameter("cp");
