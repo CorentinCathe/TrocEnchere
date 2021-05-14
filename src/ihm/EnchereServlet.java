@@ -61,7 +61,7 @@ public class EnchereServlet extends HttpServlet {
                 enchere = new EnchereBO(date,offre,enchere.getArticle(), enchere.getUtilisateur());
                 em.insertEnchere(enchere);
                 ArticleVenduBO article = enchere.getArticle();
-                article.setPrixVente(enchere.getMontant());
+                article.setPrixVente(offre);
                 am.updateArticle(article);
                 enchere.setArticle(article);
             } catch (SQLException throwables) {

@@ -22,7 +22,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     public static final String SELECT_SELL_ARTICLE_NOT_STARTED = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_debut_encheres>GETDATE()";
     public static final String SELECT_SELL_ARTICLE_FINISHED = "SELECT DISTINCT a.* FROM ARTICLES_VENDUS a WHERE a.id_utilisateur = ? and date_fin_encheres<GETDATE()";
     public static final String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,?,?,?)";
-    public static final String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET nom = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, id_categorie = ? WHERE id = ?";
+    public static final String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET nom = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?,prix_vente = ?, id_categorie = ? WHERE id = ?";
 
     @Override
     public List<ArticleVenduBO> selectAll() throws SQLException {
@@ -505,8 +505,9 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
             psmt.setDate(3,article.getDateDebutEncheres());
             psmt.setDate(4,article.getDateFinEncheres());
             psmt.setInt(5,article.getPrixInitial());
-            psmt.setInt(6,article.getCategorie().getId());
-            psmt.setInt(7,article.getId());
+            psmt.setInt(6,article.getPrixVente());
+            psmt.setInt(7,article.getCategorie().getId());
+            psmt.setInt(8,article.getId());
             res = psmt.execute();
         }catch (Exception e) {
             System.out.println("C'est l'exception");
